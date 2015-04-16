@@ -26,7 +26,14 @@ rs.check$ = function (callback) {
 
 rs.getSuggestions = function () {
 	rs.check$(function () {
-		rs.doAjax();
+		rs.$(function () {		
+			rs.$('div[data-rs=true]').each(function () {
+				var target = $(this);
+				var keyword = target.attr('data-keyword');
+
+				rs.doAjax(target, keyword);
+			});
+		});
 	});
 };
 
@@ -47,26 +54,22 @@ rs.renderRecs = function (recs) {
 	}
 
 	return htmlStr;
-}
-
-function getrecs(resp) {
-	var recsStr = rs.renderRecs(resp.recs);
-
-	$(function () {
-		$('div[data-rs=true]').each(function () {
-			var target = $(this);
-
-			target.html(recsStr);
-		});
-	});
-}
+};
 
 
-rs.doAjax = function () {	
-	$.ajax({
-        url: 'http://richanchors.com:3333/recs/?f=jsonp&demo=1&v=fuck&callback=getrecs',
+rs.doAjax = function (target, keyword) {
+	var callbackName = 'getRecs' + (new Date()).getTime();
+	var fullCallbackName = 'rs.' + callbackName;
+
+	rs[callbackName] = function (resp) {
+		var recsStr = rs.renderRecs(resp.recs);
+		target.html(recsStr);
+	};
+
+	rs.$.ajax({
+        url: 'http://richanchors.com:3333/recs/?f=jsonp&demo=1&v=' + keyword + '&callback=' + fullCallbackName,
         dataType: 'jsonp',
-        callback: 'getrecs'
+        callback: fullCallbackName
     });
 };
 
