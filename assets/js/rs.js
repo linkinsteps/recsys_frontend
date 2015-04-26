@@ -67,7 +67,7 @@ rs.doAjax = function (target, keyword) {
 	};
 
 	rs.$.ajax({
-        url: 'http://richanchors.com:3333/recs/?f=jsonp&demo=1&v=' + keyword + '&callback=' + fullCallbackName,
+        url: 'http://richanchors.com:3333/compositor/?f=jsonp&demo=1&v=' + keyword + '&callback=' + fullCallbackName,
         dataType: 'jsonp',
         callback: fullCallbackName
     });
