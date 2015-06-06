@@ -1,0 +1,349 @@
+<% layout( 'layout') -%>
+<% script('http://localhost:6969/rs.js') -%>
+
+<div class="page-content clearfix">
+    <div class="page-content-left">
+        <!-- breadcrumb -->
+        <div class="breadcrumb">
+            <ul>
+                <li>
+                    <a href="#"> Home</a>
+                </li>
+                <li> / </li>
+                <li>
+                    <a href="#"> Làm đẹp</a>
+                </li>
+                <li> / </li>
+                <li>
+                    <span> Tư vấn</span>
+                </li>
+            </ul>
+        </div>
+        <!-- -->
+        <!-- Detail - Post-->
+        <div class="detail-post">
+            <div class="detail-post-ct">
+                <h3 class="title-post-ct"><%= post.title %></h3>
+                <div class="row">
+                    <div class="large-6 columns">
+                        <span class="meta-time"><%= post.time %></span>
+                    </div>
+                    <div class="large-6 columns">
+                        <div class="meta-social">
+                            <ul>
+                                <li>
+                                    <a href="#"><img src="/img/facebook.png" alt="" /></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="/img/twitter.png" alt="" /></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="/img/googleplus.png" alt="" /></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="/img/email.png" alt="" /></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="/img/print.png" alt="" /></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="drc-gt">
+                    <%= post.summary %>
+                </div>
+                <div class="list-lq">
+                    <%- post.related %>
+                </div>
+                <div class="content-nd">
+                    <%- post.content %>
+                </div>
+                <!-- tag -->
+                <div class="tag-news">
+                    <%- post.tags %>
+                </div>
+                <!-- End tag-->
+                <!-- Box facebook-->
+                <div class="boxfacebook">
+                    <img src="/img/box-facebook.png" alt="" />
+                </div>
+                <!-- End Box facebook-->
+                <!-- Tin Lien quan -->
+                <div class="updatenews">
+                    <h3> Tin liên quan</h3>
+                    <ul>
+                        <li><a href="#"> Để đẹp như người pháp <span>( 00:00 05/09/2013 )</span></a></li>
+                        <li><a href="#"> Những món đồ đậm chất mỹ <span>( 00:00 04/09/2013 )</span></a></li>
+                        <li><a href="#"> 10 câu hỏi các quý ông “đỏm dáng” cần giải đáp <span>( 00:00 04/09/2013 )</span></a></li>
+                        <li><a href="#">  Trẻ ra vài tuổi với phong cách preppy <span>( 00:00 03/09/2013 )</span></a></li>
+                        <li><a href="#">  Robert pattinson gợi cảm trong clip quảng cáo của dior homme <span>( 00:00 03/09/2013 )</span></a></li>
+                        <li><a href="#">  Để đẹp như người pháp <span> 00:00 05/09/2013 )</span></a></li>
+                        <li><a href="#">   Những món đồ đậm chất mỹ <span>( 00:00 04/09/2013 )</span></a></li>
+                        <li><a href="#">   10 câu hỏi các quý ông “đỏm dáng” cần giải đáp <span>( 00:00 04/09/2013 )</span></a></li>
+                        <li><a href="#">   Trẻ ra vài tuổi với phong cách preppy <span>( 00:00 03/09/2013 )</span></a></li>
+                        <li><a href="#">   Robert pattinson gợi cảm trong clip quảng cáo của dior homme <span>( 00:00 03/09/2013 )</span></a></li>
+                    </ul>
+                </div>
+                <!-- End Tin lien quan -->
+                <!-- Comment list -->
+                <div class="comment">
+                    <h3 class="title-cm"> Comment</h3>
+                    <div class="meta-cm">
+                        <a href="#" class="tongcm">23 comment </a> | <a href="#" class="ykiencuaban"> Ý kiến của bạn</a>
+                    </div>
+                    <ul class="list-comment">
+                        <li>
+                            <div class="name"><a href="#">Yuna</a></div>
+                            <div class="meta-time">May 9, 2012</div>
+                            <div class="nd-cm">
+                                h siêu mẫu Irina Shayk quảng cáo bộ sưu tập mới cho hãng. Người đẹp 27 tuổi đẹp mê hồn với gương mặt thanh tú, làn da trắng nuột nà và đôi chân dài miên man.
+                            </div>
+                        </li>
+                        <li>
+                            <div class="name"><a href="#">VietX</a></div>
+                            <div class="meta-time">May 9, 2012</div>
+                            <div class="nd-cm">
+                                h siêu mẫu Irina Shayk quảng cáo bộ sưu tập mới cho hãng. Người đẹp 27 tuổi đẹp mê hồn với gương mặt thanh tú, làn da trắng nuột nà và đôi chân dài miên man.
+                            </div>
+                        </li>
+                        <li>
+                            <div class="name"><a href="#">Yuna</a></div>
+                            <div class="meta-time">May 9, 2012</div>
+                            <div class="nd-cm">
+                                h siêu mẫu Irina Shayk quảng cáo bộ sưu tập mới cho hãng. Người đẹp 27 tuổi đẹp mê hồn với gương mặt thanh tú, làn da trắng nuột nà và đôi chân dài miên man.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- End Comment  list -->
+                <!-- Form comment-->
+                <div class="form-comment clearfix">
+                    <form action="">
+                        <textarea class="form-control" rows="4"></textarea>
+                        <button type="submit" class="guicm">Gửi</button>
+                    </form>
+                </div>
+                <!-- End form comment-->
+                <!-- Tag Sao  -->
+                <div class="tag-news-list clearfix">
+                    <div class="tag-title-list">
+                        <span> Tag : </span> <a href="#"> Sao </a>
+                    </div>
+                    <ul>
+                        <li class="first">
+                            <div class="t5-content">
+                                <a href="#"><img alt="" src="/img/list-5-1.jpg" class="img-news">
+                                    <div class="h2Title">
+                                        Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="t5-content">
+                                <a href="#"><img alt="" src="/img/list-5-2.jpg" class="img-news">
+                                    <div class="h2Title">
+                                        Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="t5-content">
+                                <a href="#"><img alt="" src="/img/list-5-3.jpg" class="img-news">
+                                    <div class="h2Title">
+                                        Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="t5-content">
+                                <a href="#"><img alt="" src="/img/list-5-4.jpg" class="img-news">
+                                    <div class="h2Title">
+                                        Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="first">
+                            <div class="t5-content">
+                                <a href="#"><img alt="" src="/img/list-5-4.jpg" class="img-news">
+                                    <div class="h2Title">
+                                        Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="t5-content">
+                                <a href="#"><img alt="" src="/img/list-5-3.jpg" class="img-news">
+                                    <div class="h2Title">
+                                        Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="t5-content">
+                                <a href="#"><img alt="" src="/img/list-5-2.jpg" class="img-news">
+                                    <div class="h2Title">
+                                        Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="t5-content">
+                                <a href="#"><img alt="" src="/img/list-5-1.jpg" class="img-news">
+                                    <div class="h2Title">
+                                        Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- End Tag Sao -->
+                <!-- Tin moi cap nhap -->
+                <div class="updatenews">
+                    <h3> Tin mới cập nhập</h3>
+                    <ul>
+                        <li><a href="#"> Để đẹp như người pháp <span>( 00:00 05/09/2013 )</span></a></li>
+                        <li><a href="#"> Những món đồ đậm chất mỹ <span>( 00:00 04/09/2013 )</span></a></li>
+                        <li><a href="#"> 10 câu hỏi các quý ông “đỏm dáng” cần giải đáp <span>( 00:00 04/09/2013 )</span></a></li>
+                        <li><a href="#">  Trẻ ra vài tuổi với phong cách preppy <span>( 00:00 03/09/2013 )</span></a></li>
+                        <li><a href="#">  Robert pattinson gợi cảm trong clip quảng cáo của dior homme <span>( 00:00 03/09/2013 )</span></a></li>
+                        <li><a href="#">  Để đẹp như người pháp <span> 00:00 05/09/2013 )</span></a></li>
+                        <li><a href="#">   Những món đồ đậm chất mỹ <span>( 00:00 04/09/2013 )</span></a></li>
+                        <li><a href="#">   10 câu hỏi các quý ông “đỏm dáng” cần giải đáp <span>( 00:00 04/09/2013 )</span></a></li>
+                        <li><a href="#">   Trẻ ra vài tuổi với phong cách preppy <span>( 00:00 03/09/2013 )</span></a></li>
+                        <li><a href="#">   Robert pattinson gợi cảm trong clip quảng cáo của dior homme <span>( 00:00 03/09/2013 )</span></a></li>
+                    </ul>
+                </div>
+                <!-- End Tin moi cap nhap -->
+                <!-- LIsT NEWS SAO FAN -->
+                <div class="list-sao-fan">
+                    <h3> <span>//</span> Sao Fan</h3>
+                    <div class="row">
+                        <div class="large-6 columns list-sf-col1">
+                            <div class="style-1">
+                                <a href="#"><img alt="" src="/img/list-1-images2.jpg" class="img-news">
+                                    <div class="link2">
+                                        Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                                    </div>
+                                </a>
+                                <div class="decr">
+                                    Bờ biển tại Quảng Bình, Huế, Đà Nẵng đang bị sóng táp dữ dội. Trong các thành phố, đã có cây đổ dù theo dự báo, còn vài giờ nữa bão mới cập bờ.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="large-6 columns list-sf-col2">
+                            <div class="style-news-lis-2">
+                                <div class="nsl-2-content clearfix">
+                                    <a href="#"><img alt="" src="/img/style-list-1.jpg" class="img-news">
+                                        <div class="h2Title">
+                                            Bà bầu của Casillas làm Đại sứ nội y
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="nsl-2-content clearfix">
+                                    <a href="#"><img alt="" src="/img/style-list-2.jpg" class="img-news">
+                                        <div class="h2Title">
+                                            Bà bầu của Casillas làm Đại sứ nội y
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="nsl-2-content clearfix">
+                                    <a href="#"><img alt="" src="/img/style-list-1.jpg" class="img-news">
+                                        <div class="h2Title">
+                                            Bà bầu của Casillas làm Đại sứ nội y
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="nsl-2-content clearfix">
+                                    <a href="#"><img alt="" src="/img/style-list-2.jpg" class="img-news">
+                                        <div class="h2Title">
+                                            Bà bầu của Casillas làm Đại sứ nội y
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End List News Sao Fan-->
+            </div>
+        </div>
+        <!-- End Detail Post-->
+    </div>
+
+    <div class="page-content-right">
+        <div class="content-right-bor">  
+            <!-- HOT NEWS -->
+            <div class="hotnews">
+                <h3><span class="title">
+                    <span class="plus">+</span>
+                        Tin liên quan
+                    </span>
+                </h3>
+                <div class="style-news-lis-6">
+                    <div data-rs data-keyword="porn"></div>
+                    <script type="text/javascript">
+                        (function() {
+                            var rs = window.rs || (window.rs = {});
+                            if (!rs.loaded) {
+                                var rs = document.createElement('script');
+                                rs.async = true;
+                                rs.src = 'http://localhost:6969/rs.js';
+                                var s = document.getElementsByTagName('script')[0];
+                                s.parentNode.insertBefore(rs, s);
+                                rs.loaded = true;
+                            }                            
+                        })();
+
+                        rs.template = '';
+                        rs.template += '<div class="nsl-6-content clearfix">';
+                        rs.template += '    <div class="h2Title">';
+                        rs.template += '        <a href="{{url}}">';
+                        rs.template += '            {{title}}';
+                        rs.template += '        </a>';
+                        rs.template += '    </div>';
+                        rs.template += '    <p>';
+                        rs.template += '        <a href="{{url}}">';
+                        rs.template += '            {{meta}}';
+                        rs.template += '        </a>';
+                        rs.template += '    </p>';
+                        rs.template += '</div>';
+                    </script>
+                </div>
+            </div>
+
+            <!-- HOT NEWS -->
+            <div class="hotnews">
+                <h3><span class="title">
+                    <span class="plus">+</span>
+                        Tin nổi bật
+                    </span>
+                </h3>
+                <%- post.hots %>
+            </div>
+            <!-- END HOT NEWS -->
+
+            <div class="quangcao-ads">
+                <img alt="" src="/img/quangcao4.jpg">
+            </div>
+            <div class="quangcao-ads">
+                <img alt="" src="/img/quangcao5.jpg">
+            </div>
+            <div class="quangcao-ads">
+                <img alt="" src="/img/quangcao6.jpg">
+            </div>
+            <div class="quangcao-ads">
+                <img alt="" src="/img/quangcao7.jpg">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END CONTENT -->

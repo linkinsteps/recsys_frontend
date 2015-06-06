@@ -1,0 +1,1347 @@
+<% layout('layout') -%>
+
+<!-- Content Home 1 -->
+<div class="content-home1 clearfix">
+    <div class="content-home1-col col-1 columns">
+        <div class="style-1">
+            <a href="<%= big.href %>">
+                <div class="picture-img">
+                    <img class="img-news" src="<%= big.img %>" alt="" />
+                </div>
+                <div class="link">
+                    <%= big.text %>
+                </div>
+            </a>
+            <div class="decr">
+                <%= big.summary %>
+            </div>
+        </div>
+        <div class="style-2">
+            <div class="top-3">
+            	<% for (var i = 0, smallContent; smallContent = small[i]; i++) { %>
+					<div class="t3-content">
+	                    <a href="<%= smallContent.href %>">
+	                    	<img class="img-news" src="<%= smallContent.img %>" alt="" />
+	                        <div class="h2Title">
+	                            <%= smallContent.text %>
+	                        </div>
+	                    </a>
+	                </div>
+        		<% } %>
+            </div>
+        </div>
+    </div>
+    <div class="content-home1-col col-2 columns">
+        <div class="style-3">
+            <ul>
+            	<% for (var i = 0, mediumContent; mediumContent = medium[i]; i++) { %>
+            		<% if (i === 0) { %>
+            			<li>
+		                    <a href="<%= mediumContent.href %>">
+		                    	<img src="<%= mediumContent.img %>" alt="" />
+		                        <div class="h2Title">
+		                            <%= mediumContent.text %>
+		                        </div>
+		                    </a>
+		                </li>
+            		<% } else { %>
+            			<li>
+		                    <h2 class="h2Title">
+		                    	<a href="<%= mediumContent.href %>"><%= mediumContent.text %></a>
+	                    	</h2>
+		                </li>
+            		<% } %>
+        		<% } %>
+            </ul>
+        </div>
+    </div>
+    <div class="content-home1-col col-3 columns">
+        <div class="quangcao-ads">
+            <img class="img-news" src="/img/quangcao1.jpg" alt="" />
+        </div>
+        <div class="quangcao-ads">
+            <img class="img-news" src="/img/quangcao2.jpg" alt="" />
+        </div>
+        <div class="quangcao-ads">
+            <img class="img-news" src="/img/quangcao3.jpg" alt="" />
+        </div>
+    </div>
+</div>
+<!-- End Content Home 1 -->
+
+<!-- Ảnh và Video  -->
+<div class="anhvavideo clearfix">
+    <div class="row">
+        <div class="large-6 columns">
+            <h3> Ảnh vào video </h3></div>
+        <div class="large-6 columns">
+            <div class="control-vd"><span id="slider-prev"></span> <span class="bxSliderMainThumb numberpage">akldjad</span> <span id="slider-next"></span></div>
+        </div>
+    </div>
+    <div class="slider1">
+        <div class="slide">
+            <div class="t5-content">
+                <a href="#"><img class="img-news" src="/img/list-5-1.jpg" alt="" />
+                    <div class="h2Title">
+                        Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="t5-content">
+                <a href="#"><img class="img-news" src="/img/list-5-2.jpg" alt="" />
+                    <div class="h2Title">
+                        Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="t5-content">
+                <a href="#"><img class="img-news" src="/img/list-5-3.jpg" alt="" />
+                    <div class="h2Title">
+                        Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="t5-content">
+                <a href="#"><img class="img-news" src="/img/list-5-4.jpg" alt="" />
+                    <div class="h2Title">
+                        Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="t5-content">
+                <a href="#"><img class="img-news" src="/img/list-5-5.jpg" alt="" />
+                    <div class="h2Title">
+                        Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="t5-content">
+                <a href="#"><img class="img-news" src="/img/list-5-1.jpg" alt="" />
+                    <div class="h2Title">
+                        Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="t5-content">
+                <a href="#"><img class="img-news" src="/img/list-5-3.jpg" alt="" />
+                    <div class="h2Title">
+                        Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="t5-content">
+                <a href="#"><img class="img-news" src="/img/list-5-4.jpg" alt="" />
+                    <div class="h2Title">
+                        Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Ảnh vào Video -->
+
+<!-- Content 2 Home -->
+<div class="content-home2 clearfix">
+    <div class="content-home2-col col-1 columns">
+        <div class="news-list">
+            <!-- NEWS LIST 1 -->
+            <!-- DANH MUC LIST -->
+            <div class="danhmuc">
+                <ul>
+                    <li>
+                        <a class="active" href="#">Hậu trường</a>
+                    </li>
+                    <li>
+                        <a href="#">Theo dấu sao</a>
+                    </li>
+                    <li>
+                        <a href="#">Phỏng vấn</a>
+                    </li>
+                    <li>
+                        <a href="#">Blog sao </a>
+                    </li>
+                    <li>
+                        <a href="#">Tin đồn </a>
+                    </li>
+                    <li>
+                        <a href="#">Chuyện phiếm </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- END DANH MUC LIST-->
+            <div class="nd-news-home dm-hautruong clearfix">
+                <div class="news-list-1">
+                    <div class="news-list-1-col col-nl-1 columns">
+                        <div class="style-news-lis-1">
+                            <div class="nsl-1-content">
+                                <a href="#"><img class="img-news" src="/img/style-list-1.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="nsl-1-content">
+                                <a href="#"><img class="img-news" src="/img/style-list-2.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-list-1-col col-nl-2 columns">
+                        <div class="style-1">
+                            <a href="#"><img class="img-news" src="/img/list-1-images2.jpg" alt="" />
+                                <div class="link2">
+                                    Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                                </div>
+                            </a>
+                            <div class="decr">
+                                Bờ biển tại Quảng Bình, Huế, Đà Nẵng đang bị sóng táp dữ dội. Trong các thành phố, đã có cây đổ dù theo dự báo, còn vài giờ nữa bão mới cập bờ.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-list-1-col col-nl-3 columns">
+                        <div class="style-5">
+                            <ul>
+                                <li>
+                                    <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern </a></h2>
+                                </li>
+                                <li>
+                                    <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern </a></h2>
+                                </li>
+                                <li>
+                                    <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern </a></h2>
+                                </li>
+                                <li>
+                                    <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern </a></h2>
+                                </li>
+                                <li>
+                                    <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern </a></h2>
+                                </li>
+                                <li>
+                                    <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern </a></h2>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--END NEWS LIST 1-->
+
+            <!-- NEWS LIST 2 -->
+            <!-- DANH MUC LIST -->
+            <div class="danhmuc">
+                <ul>
+                    <li>
+                        <a class="active" href="#">Giới mốt</a>
+                    </li>
+                    <li>
+                        <a href="#">Tin tức</a>
+                    </li>
+                    <li>
+                        <a href="#">Xu hướng</a>
+                    </li>
+                    <li>
+                        <a href="#">Sao đẹp </a>
+                    </li>
+                    <li>
+                        <a href="#">Thương hiệu </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- END DANH MUC LIST-->
+
+            <div class="nd-news-home dm-gioimot clearfix">
+                <div class="news-list-1">
+                    <div class="news-list-1-col col-nl-1 columns">
+                        <div class="style-news-lis-1">
+                            <div class="nsl-1-content">
+                                <a href="#"><img class="img-news" src="/img/style-list-1.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="nsl-1-content">
+                                <a href="#"><img class="img-news" src="/img/style-list-2.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-list-1-col col-nl-2 columns">
+                        <div class="style-8">
+                            <a href="#"><img class="img-news" src="/img/gioimot.jpg" alt="" /></a>
+                            <div class="bornd">
+                                <div class="borndall">
+                                    <div class="link2">
+                                        <a href="#">Bà bầu của Casillas làm Đại sứ nội y</a>
+                                    </div>
+                                    <div class="decr">
+                                        Bờ biển tại Quảng Bình, Huế, Đà Nẵng đang bị sóng táp dữ dội. Trong các thành phố, đã có cây đổ dù theo dự báo, còn vài giờ nữa bão mới cập bờ.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-list-1-col col-nl-3 columns">
+                        <div class="style-news-lis-1">
+                            <div class="nsl-1-content">
+                                <a href="#"><img class="img-news" src="/img/style-list-1.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="nsl-1-content">
+                                <a href="#"><img class="img-news" src="/img/style-list-2.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END NEWS LIST 2-->
+
+            <!-- NEWS LIST 3 -->
+            <!-- DANH MUC LIST -->
+            <div class="danhmuc">
+                <ul>
+                    <li>
+                        <a class="active" href="#">Âm nhạc</a>
+                    </li>
+                    <li>
+                        <a href="#">Tin tức</a>
+                    </li>
+                    <li>
+                        <a href="#">Bảng xếp hạng</a>
+                    </li>
+                    <li>
+                        <a href="#">Hậu trường</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- END DANH MUC LIST-->
+
+            <div class="nd-news-home dm-amnhac clearfix">
+                <div class="news-list-2 row">
+                    <div class="news-list-2-col col-nl-1 columns">
+                        <div class="style-news-lis-2">
+                            <div class="nsl-2-content clearfix">
+                                <a href="#"><img class="img-news" src="/img/style-list-1.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="nsl-2-content clearfix">
+                                <a href="#"><img class="img-news" src="/img/style-list-2.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="nsl-2-content clearfix">
+                                <a href="#"><img class="img-news" src="/img/style-list-1.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-list-2-col col-nl-2 columns">
+                        <div class="style-1">
+                            <a href="#"><img class="img-news" src="/img/list-1-images2.jpg" alt="" />
+                                <div class="link2">
+                                    Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="news-list-2-col col-nl-3 columns">
+                        <div class="style-news-lis-2">
+                            <div class="style-6">
+                                <ul>
+                                    <li>
+                                        <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern </a></h2>
+                                    </li>
+                                    <li>
+                                        <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern </a></h2>
+                                    </li>
+                                    <li>
+                                        <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern </a></h2>
+                                    </li>
+                                    <li>
+                                        <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern </a></h2>
+                                    </li>
+                                    <li>
+                                        <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern </a></h2>
+                                    </li>
+                                    <li>
+                                        <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern </a></h2>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END NEWS LIST 3-->
+
+            <!-- NEWS LIST 4 -->
+            <!-- DANH MUC LIST -->
+            <div class="danhmuc">
+                <ul>
+                    <li>
+                        <a class="active" href="#">Điện ảnh</a>
+                    </li>
+                    <li>
+                        <a href="#">Tin tức</a>
+                    </li>
+                    <li>
+                        <a href="#">Phim đặc biệt</a>
+                    </li>
+                    <li>
+                        <a href="#">Hậu trường </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- END DANH MUC LIST-->
+
+            <div class="nd-news-home dm-dienanh clearfix">
+                <div class="news-list-2 row">
+                    <div class="news-list-2-col col-nl-1 columns">
+                        <div class="style-news-lis-3">
+                            <ul>
+                                <li>
+                                    <div class="nsl-3-content clearfix">
+                                        <a href="#"><img class="img-news" src="/img/dienanh1.jpg" alt="" />
+                                            <div class="h2Title">
+                                                Bà bầu của Casillas làm Đại sứ nội y
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="#">Kinh doanh đa cấp sẽ phải ký quỹ 5 tỷ đồng</a>
+                                </li>
+                                <li>
+                                    <a href="#">Chàng du học sinh Hawaii đẹp trai hơn diễn viên Hàn</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="news-list-2-col col-nl-2 columns">
+                        <div class="style-1">
+                            <a href="#"><img class="img-news" src="/img/dienanh3.jpg" alt="" />
+                                <div class="link2">
+                                    Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="news-list-2-col col-nl-3 columns">
+                        <div class="style-news-lis-3">
+                            <ul>
+                                <li>
+                                    <div class="nsl-3-content clearfix">
+                                        <a href="#"><img class="img-news" src="/img/dienanh2.jpg" alt="" />
+                                            <div class="h2Title">
+                                                Bà bầu của Casillas làm Đại sứ nội y
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="#">Kinh doanh đa cấp sẽ phải ký quỹ 5 tỷ đồng</a>
+                                </li>
+                                <li>
+                                    <a href="#">Chàng du học sinh Hawaii đẹp trai hơn diễn viên Hàn</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END NEWS LIST 4-->
+
+            <!-- NEWS LIST 5 -->
+            <!-- DANH MUC LIST -->
+            <div class="danhmuc">
+                <ul>
+                    <li>
+                        <a class="active" href="#">Ấn tượng</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- END DANH MUC LIST-->
+            <div class="nd-news-home dm-antuong clearfix">
+                <div class="news-list-3 row">
+                    <div class="news-list-3-col col-nl-1 columns">
+                        <div class="style-7">
+                            <a href="#">
+                                <img class="img-news" alt="" src="/img/antuong.jpg">
+                            </a>
+                            <div class="bornd">
+                                <div class="link2">
+                                    <a href="#">Bà bầu của Casillas làm Đại sứ nội y</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-list-3-col col-nl-2 columns">
+                        <div class="style-news-lis-2">
+                            <div class="nsl-2-content clearfix">
+                                <a href="#"><img class="img-news" src="/img/style-list-1.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="nsl-2-content clearfix">
+                                <a href="#"><img class="img-news" src="/img/style-list-2.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="nsl-2-content clearfix">
+                                <a href="#"><img class="img-news" src="/img/style-list-1.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="nsl-2-content clearfix">
+                                <a href="#"><img class="img-news" src="/img/style-list-2.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END NEWS LIST 5-->
+
+            <!-- NEWS LIST 6 -->
+            <!-- DANH MUC LIST -->
+            <div class="danhmuc">
+                <ul>
+                    <li>
+                        <a class="active" href="#">Làm đẹp</a>
+                    </li>
+                    <li>
+                        <a href="#">Thương hiệu</a>
+                    </li>
+                    <li>
+                        <a href="#">Tư vấn</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- END DANH MUC LIST-->
+            <div class="nd-news-home dm-lamdep clearfix">
+                <div class="news-list-1">
+                    <div class="news-list-1-col col-nl-1 columns">
+                        <div class="style-news-lis-1">
+                            <div class="nsl-1-content">
+                                <a href="#"><img class="img-news" src="/img/lamdep1.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="nsl-1-content">
+                                <a href="#"><img class="img-news" src="/img/lamdep2.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-list-1-col col-nl-2 columns">
+                        <div class="style-8">
+                            <a href="#"><img class="img-news" src="/img/lamdep.jpg" alt="" /></a>
+                            <div class="bornd">
+                                <div class="borndall">
+                                    <div class="link2">
+                                        <a href="#">Bà bầu của Casillas làm Đại sứ nội y</a>
+                                    </div>
+                                    <div class="decr">
+                                        Bờ biển tại Quảng Bình, Huế, Đà Nẵng đang bị sóng táp dữ dội. Trong các thành phố, đã có cây đổ dù theo dự báo, còn vài giờ nữa bão mới cập bờ.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-list-1-col col-nl-3 columns">
+                        <div class="style-news-lis-1">
+                            <div class="nsl-1-content">
+                                <a href="#"><img class="img-news" src="/img/lamdep3.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="nsl-1-content">
+                                <a href="#"><img class="img-news" src="/img/lamdep4.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END NEWS LIST 6-->
+
+            <!-- NEWS LIST 7 -->
+            <!-- DANH MUC LIST -->
+            <div class="danhmuc">
+                <ul>
+                    <li>
+                        <a class="active" href="#">Sao fan</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- END DANH MUC LIST-->
+            <div class="nd-news-home dm-saofan clearfix">
+                <div class="news-list-2 row">
+                    <div class="news-list-2-col col-nl-1 columns">
+                        <div class="style-news-lis-2">
+                            <div class="nsl-2-content clearfix">
+                                <a href="#"><img class="img-news" src="/img/style-list-1.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="nsl-2-content clearfix">
+                                <a href="#"><img class="img-news" src="/img/style-list-2.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="nsl-2-content clearfix">
+                                <a href="#"><img class="img-news" src="/img/style-list-1.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-list-2-col col-nl-2 columns">
+                        <div class="style-1">
+                            <a href="#"><img class="img-news" src="/img/saofan.jpg" alt="" />
+                                <div class="link2">
+                                    Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="news-list-2-col col-nl-3 columns">
+                        <div class="style-news-lis-2">
+                            <div class="style-6">
+                                <ul>
+                                    <li>
+                                        <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern </a></h2>
+                                    </li>
+                                    <li>
+                                        <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern </a></h2>
+                                    </li>
+                                    <li>
+                                        <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern </a></h2>
+                                    </li>
+                                    <li>
+                                        <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern </a></h2>
+                                    </li>
+                                    <li>
+                                        <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern </a></h2>
+                                    </li>
+                                    <li>
+                                        <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern </a></h2>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END NEWS LIST 7-->
+
+            <!-- NEWS LIST 8 -->
+            <!-- DANH MUC LIST -->
+            <div class="danhmuc">
+                <ul>
+                    <li>
+                        <a class="active" href="#">Teen + </a>
+                    </li>
+                    <li>
+                        <a href="#">Nóng trên mạng</a>
+                    </li>
+                    <li>
+                        <a href="#">giới tính</a>
+                    </li>
+                    <li>
+                        <a href="#">Diễn đàn </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- END DANH MUC LIST-->
+            <div class="nd-news-home dm-teen clearfix">
+                <div class="news-list-2 row">
+                    <div class="news-list-2-col col-nl-1 columns">
+                        <div class="style-news-lis-2">
+                            <div class="nsl-2-content clearfix">
+                                <a href="#"><img class="img-news" src="/img/style-list-1.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="nsl-2-content clearfix">
+                                <a href="#"><img class="img-news" src="/img/style-list-2.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="nsl-2-content clearfix">
+                                <a href="#"><img class="img-news" src="/img/style-list-1.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-list-2-col col-nl-2 columns">
+                        <div class="style-1">
+                            <a href="#"><img class="img-news" src="/img/teen.jpg" alt="" />
+                                <div class="link2">
+                                    Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="news-list-2-col col-nl-3 columns">
+                        <div class="style-news-lis-2">
+                            <div class="style-6">
+                                <ul>
+                                    <li>
+                                        <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern </a>    </h2>
+                                    </li>
+                                    <li>
+                                        <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern </a>    </h2>
+                                    </li>
+                                    <li>
+                                        <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern </a>    </h2>
+                                    </li>
+                                    <li>
+                                        <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern </a>    </h2>
+                                    </li>
+                                    <li>
+                                        <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern </a>    </h2>
+                                    </li>
+                                    <li>
+                                        <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern </a>    </h2>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END NEWS LIST 8-->
+
+            <!-- NEWS LIST 9 -->
+            <!-- DANH MUC LIST -->
+            <div class="danhmuc">
+                <ul>
+                    <li>
+                        <a class="active" href="#">Lifestyle</a>
+                    </li>
+                    <li>
+                        <a href="#">Ăn ngon</a>
+                    </li>
+                    <li>
+                        <a href="#">Sàn chơi</a>
+                    </li>
+                    <li>
+                        <a href="#">Sách </a>
+                    </li>
+                    <li>
+                        <a href="#">Highttech </a>
+                    </li>
+                    <li>
+                        <a href="#">Xe </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- END DANH MUC LIST-->
+            <div class="nd-news-home dm-lifestyle clearfix">
+                <!-- Noi dung -->
+                <div class="news-list-2 row">
+                    <div class="news-list-2-col col-nl-1 columns">
+                        <div class="style-news-lis-2">
+                            <div class="nsl-2-content clearfix">
+                                <a href="#"><img class="img-news" src="/img/style-list-1.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="nsl-2-content clearfix">
+                                <a href="#"><img class="img-news" src="/img/style-list-2.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="nsl-2-content clearfix">
+                                <a href="#"><img class="img-news" src="/img/style-list-1.jpg" alt="" />
+                                    <div class="h2Title">
+                                        Bà bầu của Casillas làm Đại sứ nội y
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-list-2-col col-nl-2 columns">
+                        <div class="style-1">
+                            <a href="#"><img class="img-news" src="/img/lifestyle.jpg" alt="" />
+                                <div class="link2">
+                                    Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="news-list-2-col col-nl-3 columns">
+                        <div class="style-news-lis-2">
+                            <div class="style-6">
+                                <ul>
+                                    <li>
+                                        <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern  </a></h2>
+                                    </li>
+                                    <li>
+                                        <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern  </a></h2>
+                                    </li>
+                                    <li>
+                                        <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern  </a></h2>
+                                    </li>
+                                    <li>
+                                        <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern  </a></h2>
+                                    </li>
+                                    <li>
+                                        <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern  </a></h2>
+                                    </li>
+                                    <li>
+                                        <h2 class="h2Title"><a href="#">Nữ hoàng tài sắc hút hồn tân binh Kaiserslautern  </a></h2>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Noi Dung -->
+            </div>
+            <!-- END NEWS LIST 9-->            
+        </div>
+    </div>
+
+    <div class="content-home2-col col-2 columns">
+        <div class="quangcao-ads">
+            <img src="/img/quangcao4.jpg" alt="" />
+        </div>
+        <!-- TOP MUSIC -->
+        <div class="top-music">
+            <h3> <span class="title"><span class="plus">+</span> TOP MUZIX</span></h3>
+            <div id="tab-music" class='tab-container'>
+                <ul class='etabs clearfix'>
+                    <li class='tab'><a class="song" href="#tabs1-song">Song</a></li>
+                    <li class='tab'><a class="video" href="#tabs1-video">Video</a></li>
+                </ul>
+                <div class='panel-container'>
+                    <div id="tabs1-song">
+                        <ul>
+                            <li class="clearfix">
+                                <div class="verti top-num">
+                                    <span class="top-rank">01</span>
+                                </div>
+                                <div class="verti metalink">
+                                    <div class="meta">
+                                        <a class="tracklink" href="#">Crash my party</a>
+                                        <a href="#"> <span> Luke Bryan </span> </a>
+                                    </div>
+                                </div>
+                                <div class="verti">
+                                    <div class="btplay">
+                                        <a href="#"><span class="nutplay">&nbsp;</span></a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="verti">
+                                    <span class="top-rank">02</span>
+                                </div>
+                                <div class="verti">
+                                    <div class="meta">
+                                        <a class="tracklink" href="#">Crash my party</a>
+                                        <a href="#"> <span> Luke Bryan </span> </a>
+                                    </div>
+                                </div>
+                                <div class="verti">
+                                    <div class="btplay">
+                                        <a href="#"><span class="nutplay">&nbsp;</span></a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="verti">
+                                    <span class="top-rank">03</span>
+                                </div>
+                                <div class="verti">
+                                    <div class="meta">
+                                        <a class="tracklink" href="#">Crash my party</a>
+                                        <a href="#"> <span> Luke Bryan </span> </a>
+                                    </div>
+                                </div>
+                                <div class="verti">
+                                    <div class="btplay">
+                                        <a href="#"><span class="nutplay">&nbsp;</span></a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="verti">
+                                    <span class="top-rank">04</span>
+                                </div>
+                                <div class="verti">
+                                    <div class="meta">
+                                        <a class="tracklink" href="#">Crash my party</a>
+                                        <a href="#"> <span> Luke Bryan </span> </a>
+                                    </div>
+                                </div>
+                                <div class="verti">
+                                    <div class="btplay">
+                                        <a href="#"><span class="nutplay">&nbsp;</span></a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="verti">
+                                    <span class="top-rank">05</span>
+                                </div>
+                                <div class="verti">
+                                    <div class="meta">
+                                        <a class="tracklink" href="#">Crash my party</a>
+                                        <a href="#"> <span> Luke Bryan </span> </a>
+                                    </div>
+                                </div>
+                                <div class="verti">
+                                    <div class="btplay">
+                                        <a href="#"><span class="nutplay">&nbsp;</span></a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="verti">
+                                    <span class="top-rank">06</span>
+                                </div>
+                                <div class="verti">
+                                    <div class="meta">
+                                        <a class="tracklink" href="#">Crash my party</a>
+                                        <a href="#"> <span> Luke Bryan </span> </a>
+                                    </div>
+                                </div>
+                                <div class="verti">
+                                    <div class="btplay">
+                                        <a href="#"><span class="nutplay">&nbsp;</span></a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="verti">
+                                    <span class="top-rank">07</span>
+                                </div>
+                                <div class="verti">
+                                    <div class="meta">
+                                        <a class="tracklink" href="#">Crash my party</a>
+                                        <a href="#"> <span> Luke Bryan </span> </a>
+                                    </div>
+                                </div>
+                                <div class="verti">
+                                    <div class="btplay">
+                                        <a href="#"><span class="nutplay">&nbsp;</span></a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="muzik-xemthem">
+                            <a href="#">Xem thêm</a>
+                        </div>
+                    </div>
+                    <div id="tabs1-video">
+                        <ul>
+                            <li class="clearfix">
+                                <div class="verti top-num">
+                                    <span class="top-rank">01</span>
+                                </div>
+                                <div class="verti metalink">
+                                    <div class="meta">
+                                        <a class="tracklink" href="#">Crash my party</a>
+                                        <a href="#"> <span> Luke Bryan </span> </a>
+                                    </div>
+                                </div>
+                                <div class="verti">
+                                    <div class="btplay">
+                                        <a href="#"><span class="nutplay">&nbsp;</span></a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="verti">
+                                    <span class="top-rank">02</span>
+                                </div>
+                                <div class="verti">
+                                    <div class="meta">
+                                        <a class="tracklink" href="#">Crash my party</a>
+                                        <a href="#"> <span> Luke Bryan </span> </a>
+                                    </div>
+                                </div>
+                                <div class="verti">
+                                    <div class="btplay">
+                                        <a href="#"><span class="nutplay">&nbsp;</span></a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="verti">
+                                    <span class="top-rank">03</span>
+                                </div>
+                                <div class="verti">
+                                    <div class="meta">
+                                        <a class="tracklink" href="#">Crash my party</a>
+                                        <a href="#"> <span> Luke Bryan </span> </a>
+                                    </div>
+                                </div>
+                                <div class="verti">
+                                    <div class="btplay">
+                                        <a href="#"><span class="nutplay">&nbsp;</span></a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="verti">
+                                    <span class="top-rank">04</span>
+                                </div>
+                                <div class="verti">
+                                    <div class="meta">
+                                        <a class="tracklink" href="#">Crash my party</a>
+                                        <a href="#"> <span> Luke Bryan </span> </a>
+                                    </div>
+                                </div>
+                                <div class="verti">
+                                    <div class="btplay">
+                                        <a href="#"><span class="nutplay">&nbsp;</span></a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="verti">
+                                    <span class="top-rank">05</span>
+                                </div>
+                                <div class="verti">
+                                    <div class="meta">
+                                        <a class="tracklink" href="#">Crash my party</a>
+                                        <a href="#"> <span> Luke Bryan </span> </a>
+                                    </div>
+                                </div>
+                                <div class="verti">
+                                    <div class="btplay">
+                                        <a href="#"><span class="nutplay">&nbsp;</span></a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="verti">
+                                    <span class="top-rank">06</span>
+                                </div>
+                                <div class="verti">
+                                    <div class="meta">
+                                        <a class="tracklink" href="#">Crash my party</a>
+                                        <a href="#"> <span> Luke Bryan </span> </a>
+                                    </div>
+                                </div>
+                                <div class="verti">
+                                    <div class="btplay">
+                                        <a href="#"><span class="nutplay">&nbsp;</span></a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="verti">
+                                    <span class="top-rank">07</span>
+                                </div>
+                                <div class="verti">
+                                    <div class="meta">
+                                        <a class="tracklink" href="#">Crash my party</a>
+                                        <a href="#"> <span> Luke Bryan </span> </a>
+                                    </div>
+                                </div>
+                                <div class="verti">
+                                    <div class="btplay">
+                                        <a href="#"><span class="nutplay">&nbsp;</span></a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- TOP MUSIC -->
+        <div class="quangcao-ads">
+            <img src="/img/quangcao5.jpg" alt="" />
+        </div>
+        <!-- TOP Quà Tặng -->
+        <div class="top-quatang">
+            <div id="tab-quatang" class="tab-container">
+                <ul class='etabs clearfix'>
+                    <li class='tab'><a href="#tabs1-quatang"> + Quà Tặng </a></li>
+                    <li class='tab'><a href="#tabs1-chosale">Chợ Sale</a></li>
+                </ul>
+                <div id="tabs1-quatang">
+                    <ul class="quatang">
+                        <li>
+                            <a href="#">
+                                <div class="qualine titlequa">
+                                    <span class="num">01</span>
+                                    <span class="title">Đầm jean ấn tượng chiều cuối tuần</span>
+                                </div>
+                                <div class="qualine picqua">
+                                    <img src="/img/quatang.png" alt="" />
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="qualine titlequa">
+                                    <span class="num">02</span>
+                                    <span class="title">Đầm jean ấn tượng chiều cuối tuần</span>
+                                </div>
+                                <div class="qualine picqua">
+                                    <img src="/img/quatang.png" alt="" />
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="qualine titlequa">
+                                    <span class="num">03</span>
+                                    <span class="title">Đầm jean ấn tượng chiều cuối tuần</span>
+                                </div>
+                                <div class="qualine picqua">
+                                    <img src="/img/quatang.png" alt="" />
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="qualine titlequa">
+                                    <span class="num">04</span>
+                                    <span class="title">Đầm jean ấn tượng chiều cuối tuần</span>
+                                </div>
+                                <div class="qualine picqua">
+                                    <img src="/img/quatang.png" alt="" />
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="qualine titlequa">
+                                    <span class="num">05</span>
+                                    <span class="title">Đầm jean ấn tượng chiều cuối tuần</span>
+                                </div>
+                                <div class="qualine picqua">
+                                    <img src="/img/quatang.png" alt="" />
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="tabs1-chosale">
+                    <ul class="quatang">
+                        <li>
+                            <a href="#">
+                                <div class="qualine titlequa">
+                                    <span class="num">01</span>
+                                    <span class="title">Đầm jean ấn tượng chiều cuối tuần</span>
+                                </div>
+                                <div class="qualine picqua">
+                                    <img src="/img/quatang2.png" alt="" />
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="qualine titlequa">
+                                    <span class="num">02</span>
+                                    <span class="title">Đầm jean ấn tượng chiều cuối tuần</span>
+                                </div>
+                                <div class="qualine picqua">
+                                    <img src="/img/quatang2.png" alt="" />
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="qualine titlequa">
+                                    <span class="num">03</span>
+                                    <span class="title">Đầm jean ấn tượng chiều cuối tuần</span>
+                                </div>
+                                <div class="qualine picqua">
+                                    <img src="/img/quatang2.png" alt="" />
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="qualine titlequa">
+                                    <span class="num">04</span>
+                                    <span class="title">Đầm jean ấn tượng chiều cuối tuần</span>
+                                </div>
+                                <div class="qualine picqua">
+                                    <img src="/img/quatang2.png" alt="" />
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="qualine titlequa">
+                                    <span class="num">05</span>
+                                    <span class="title">Đầm jean ấn tượng chiều cuối tuần</span>
+                                </div>
+                                <div class="qualine picqua">
+                                    <img src="/img/quatang2.png" alt="" />
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- content -->
+                </div>
+            </div>
+        </div>
+        <!-- TOP Quà Tặng -->
+        <div class="quangcao-ads">
+            <img src="/img/quangcao6.jpg" alt="" />
+        </div>
+        <div class="quangcao-ads">
+            <img src="/img/quangcao7.jpg" alt="" />
+        </div>
+        <div class="quangcao-ads">
+            <img src="/img/quangcao8.jpg" alt="" />
+        </div>
+    </div>
+</div>
+<!-- END Content 2 Home -->
+<!-- FUN FUN -->
+<div class="funfun-container">
+    <div class="row ">
+        <div class="title-funfun clearfix">
+            <div class="large-6 columns">
+                <h3> FUN FUN</h3></div>
+            <div class="large-6 columns">
+                <div class="control-vd"><span id="slider-prev2"></span> <span class="bxSliderMainThumb2 numberpage">akldjad</span> <span id="slider-next2"></span></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="funfun">
+                <div class="slide">
+                    <div class="t5-content">
+                        <a href="#"><img class="img-news" src="/img/list-5-1.jpg" alt="" />
+                            <div class="h2Title">
+                                Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="t5-content">
+                        <a href="#"><img class="img-news" src="/img/list-5-2.jpg" alt="" />
+                            <div class="h2Title">
+                                Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="t5-content">
+                        <a href="#"><img class="img-news" src="/img/list-5-3.jpg" alt="" />
+                            <div class="h2Title">
+                                Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="t5-content">
+                        <a href="#"><img class="img-news" src="/img/list-5-4.jpg" alt="" />
+                            <div class="h2Title">
+                                Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="t5-content">
+                        <a href="#"><img class="img-news" src="/img/list-5-5.jpg" alt="" />
+                            <div class="h2Title">
+                                Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="t5-content">
+                        <a href="#"><img class="img-news" src="/img/list-5-1.jpg" alt="" />
+                            <div class="h2Title">
+                                Hot girl Tam Triều Dâng bị giật túi, cướp iPhone 5S 36
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--FUN FUN -->

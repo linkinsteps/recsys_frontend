@@ -11,6 +11,19 @@
     };
 
     /**
+     * Default template of Recommendations
+     */
+    rs.DEFAULT_TEMPLATE = '';
+    rs.DEFAULT_TEMPLATE += '<div class="media">';
+    rs.DEFAULT_TEMPLATE += '    <div class="media-body">';
+    rs.DEFAULT_TEMPLATE += '        <h4 class="media-heading">';
+    rs.DEFAULT_TEMPLATE += '            <a href="{{url}}">{{title}}</a>';
+    rs.DEFAULT_TEMPLATE += '        </h4>';
+    rs.DEFAULT_TEMPLATE += '        <p>{{meta}}</p>';
+    rs.DEFAULT_TEMPLATE += '    </div>';
+    rs.DEFAULT_TEMPLATE += '</div>';
+
+    /**
      * Check existing of jQuery and store jQuery in '$'. If not, will get jQuery 
      * from jQuery CDN and make it noConflict with current website
      */
@@ -65,6 +78,23 @@
     };
 
     /**
+     * Render recommendation by using 'rs.template'
+     * @param {Object} rec The recommendation object
+     * @return {String}
+     */
+    rs.renderRec = function (rec) {
+        var htmlStr = rs.template || rs.DEFAULT_TEMPLATE;
+
+        for (var prop in rec) {
+            var regex = new RegExp('{{' + prop + '}}', 'g');
+
+            htmlStr = htmlStr.replace(regex, rec[prop]);
+        }
+
+        return htmlStr;
+    };
+
+    /**
      * Render recommendations from AJAX request
      * @param {Array<Object>} recs The array list contains all recommendations
      * @return {String}
@@ -77,14 +107,7 @@
         for (var i = 0; i < recs.length; i++) {
             var rec = recs[i];
 
-            htmlStr += '<div class="media">';
-            htmlStr += '    <div class="media-body">';
-            htmlStr += '        <h4 class="media-heading">';
-            htmlStr += '            <a href="' + rec.url + '">' + rec.title + '</a>';
-            htmlStr += '        </h4>';
-            htmlStr += '        <p>' + rec.meta + '</p>';
-            htmlStr += '    </div>';
-            htmlStr += '</div>';
+            htmlStr += rs.renderRec(rec);
         }
 
         return htmlStr;
@@ -287,7 +310,10 @@
         rs.initEventHandler();
         rs.initLogger();
     };
-    rs.init();
+
+    window.onload = function () {
+        rs.init();
+    };
 
 
 })(rs = window.rs || {});
