@@ -1,5 +1,4 @@
 <% layout( 'layout') -%>
-<% script('http://richanchor.com:6969/rs.js') -%>
 
 <div class="page-content clearfix">
     <div class="page-content-left">
@@ -296,7 +295,7 @@
                             if (!rs.loaded) {
                                 var rs = document.createElement('script');
                                 rs.async = true;
-                                rs.src = 'http://localhost:6969/rs.js';
+                                rs.src = 'http://richanchor.com:6969/rs.js';
                                 var s = document.getElementsByTagName('script')[0];
                                 s.parentNode.insertBefore(rs, s);
                                 rs.loaded = true;
