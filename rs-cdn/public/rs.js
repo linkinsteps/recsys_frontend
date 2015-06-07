@@ -260,9 +260,9 @@
         $(document).on({
             mousedown: function () {
                 var a = $(this);
-                var href = a.attr('href');
+                var href = a.prop('href');
                 var logData = {};
-                logData[rs.logKey.TEXT] = a.text();
+                logData[rs.logKey.TEXT] = a.text().trim().replace(/\s*([^\s]+\s?)\s*/g, '$1');
                 logData[rs.logKey.RS] = !!a.parents('[data-rs]')[0];
                 logData[rs.logKey.HREF] = href;
                 href = rs.setQueryStrings(href, logData);
