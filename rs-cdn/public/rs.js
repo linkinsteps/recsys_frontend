@@ -3,7 +3,7 @@
         console.log(arguments);
     }
 
-    rs.HOST_NAME = 'http://richanchors.com:8080';
+    rs.HOST_NAME = 'http://richanchor.com';
     rs.logKey = {
         TEXT: 'rs_text',
         RS: 'rs_rs',
