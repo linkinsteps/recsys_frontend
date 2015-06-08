@@ -2,16 +2,15 @@ var express = require('express');
 var router = express.Router();
 var request = require('request');
 var cheerio = require('cheerio');
+var VBUZZ_URL = 'http://vbuzz.vn';
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-    var url = 'http://vbuzz.vn/';
-
+router.get('/vbuzz', function (req, res, next) {
     var data = {
         title: 'Locally vBuzz'
     };
 
-    request(url, function (error, response, html) {
+    request(VBUZZ_URL, function (error, response, html) {
     	if (!error) {
     		var $ = cheerio.load(html);
 
@@ -21,7 +20,7 @@ router.get('/', function (req, res, next) {
                 var img = a.find('img');
 
                 data.big = {
-                    href: a.attr('href').replace(url, '/'),
+                    href: a.attr('href').replace(VBUZZ_URL, '/vbuzz'),
                     img: img.attr('src'),
                     text: a.find('.link').text(),
                     summary: a.next().text()
@@ -38,7 +37,7 @@ router.get('/', function (req, res, next) {
                     var img = a.find('img');
 
                     smallData.push({
-                        href: a.attr('href').replace(url, '/'),
+                        href: a.attr('href').replace(VBUZZ_URL, '/vbuzz'),
                         img: img.attr('src'),
                         text: a.find('.h2Title').text()
                     });
@@ -58,7 +57,7 @@ router.get('/', function (req, res, next) {
                         var img = a.find('img');
 
                         mediumData.push({
-                            href: a.attr('href').replace(url, '/'),
+                            href: a.attr('href').replace(VBUZZ_URL, '/vbuzz'),
                             img: img.attr('src'),
                             text: a.find('.h2Title').text()
                         });
@@ -67,7 +66,7 @@ router.get('/', function (req, res, next) {
                         var a = h2.find('a');
 
                         mediumData.push({
-                            href: a.attr('href').replace(url, '/'),
+                            href: a.attr('href').replace(VBUZZ_URL, '/vbuzz'),
                             text: a.text()
                         });
                     }
@@ -82,7 +81,6 @@ router.get('/', function (req, res, next) {
 });
 
 function handleDetails(req, res) {
-    var VBUZZ_URL = 'http://vbuzz.vn';
     var url = VBUZZ_URL + '/';
     var cat = req.params['cat'];
     var subcat = req.params['subcat'];
@@ -125,7 +123,7 @@ function handleDetails(req, res) {
                     var a = $(this);
                     var href = a.attr('href');
 
-                    a.attr('href', href.replace(VBUZZ_URL, ''));
+                    a.attr('href', href.replace(VBUZZ_URL, '/vbuzz'));
                 });
 
                 data.post.related = related.html();
@@ -151,7 +149,7 @@ function handleDetails(req, res) {
                     var a = $(this);
                     var href = a.attr('href');
 
-                    a.attr('href', href.replace(VBUZZ_URL, ''));
+                    a.attr('href', href.replace(VBUZZ_URL, '/vbuzz'));
                 })
 
                 data.post.hots = hots;
@@ -167,11 +165,11 @@ function handleDetails(req, res) {
 }
 
 /* GET detail page. */
-router.get('/:cat/:subcat/:topic', function (req, res, next) {
+router.get('/vbuzz/:cat/:subcat/:topic', function (req, res, next) {
     handleDetails(req, res);
 });
 
-router.get('/:cat/:topic', function (req, res, next) {
+router.get('/vbuzz/:cat/:topic', function (req, res, next) {
     handleDetails(req, res);
 });
 
