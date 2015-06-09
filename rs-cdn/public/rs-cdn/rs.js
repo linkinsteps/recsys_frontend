@@ -86,9 +86,14 @@
         var htmlStr = rs.template || rs.DEFAULT_TEMPLATE;
 
         for (var prop in rec) {
+            var value = rec[prop];
             var regex = new RegExp('{{' + prop + '}}', 'g');
 
-            htmlStr = htmlStr.replace(regex, rec[prop]);
+            if (prop === 'url') {
+                value = value.replace('http://vbuzz.vn/', 'http://richanchor.com/vbuzz/');
+            }
+
+            htmlStr = htmlStr.replace(regex, value);
         }
 
         return htmlStr;
