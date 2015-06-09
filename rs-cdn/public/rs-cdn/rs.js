@@ -123,6 +123,7 @@
 
         var callbackName = 'getRecs' + (new Date()).getTime();
         var fullCallbackName = 'rs.' + callbackName;
+        var url = window.location.href.replace('http://richanchor.com/vbuzz/', 'http://vbuzz.vn/');
 
         rs[callbackName] = function (resp) {
             log('rs.' + callbackName, resp);
@@ -132,7 +133,7 @@
         };
 
         rs.$.ajax({
-            url: rs.HOST_NAME + '/compositor/?f=jsonp&demo=1&v=' + keyword + '&callback=' + fullCallbackName,
+            url: rs.HOST_NAME + '/compositor/?f=jsonp&title=' + encodeURIComponent(document.title) + '&url=' + encodeURIComponent(url) + '&callback=' + fullCallbackName,
             dataType: 'jsonp',
             callback: fullCallbackName
         });
