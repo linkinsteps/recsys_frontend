@@ -22,11 +22,18 @@ Clone source code of `RecSys Frontend`
 ### Step 3 - Init your own rs-cdn
 1. Open file `/recsys_frontend/rs-cdn/app.js`
 2. At `line 59`, change `6969` to your expected port number
-3. Run NodeJS app for rs-cdn
+3. Run NodeJS app for `rs-cdn`
 
 *Note: Your own rs-cdn location will be `http://yourhost:yourport/rs-cdn/rs.js`
 
 ### Step 4 - Point local-vbuzz to your own rs-cdn
 1. Open file `/recsys_frontend/local-vbuzz/view/detail.ejs`
 2. At `line 316`, change `rsScript.src` value to your own rs-cdn location
-3. Run NodeJS app for local-vbuzz
+3. Save this file
+
+### Step 5 - Init your own local-vbuzz
+1. Open file `/recsys_frontend/local-vbuzzn/app.js`
+2. At `line 63`, change `3000` to your expected port number
+3. Run NodeJS app for `local-vbuzz`
+
+*Note: Your own rs-cdn location will be `http://yourhost:yourport/vbuzz/`
