@@ -36,4 +36,4 @@ Clone source code of `RecSys Frontend`
 2. At `line 63`, change `3000` to your expected port number
 3. Run NodeJS app for `local-vbuzz`
 
-*Note: Your own rs-cdn location will be `http://yourhost:yourport/vbuzz/`
+*Note: Your own local-vbuzz location will be `http://yourhost:yourport/vbuzz/`
