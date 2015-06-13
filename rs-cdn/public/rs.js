@@ -1,61 +1,93 @@
 (function (rs) {
-    function log() {
-        console.log(arguments);
-    }
+    /**
+     * Log function for rs
+     */
+    var LOGGER = {
+        _log: function (methodName, logData) {
+            if (console && console.log && typeof console.log === 'function') {
+                var args = []; 
+                args.push.apply(args, logData);
+                args.unshift('[ResSys|' + (methodName.toUpperCase()) + ']');
 
+                console.log.apply(console, args);
+            }
+        },
+
+        info: function () {
+            this._log('info', arguments);
+        },
+
+        debug: function () {
+            if (rs.debug) {
+                this._log('debug', arguments);
+            }
+        },
+
+        error: function () {
+            this._log('error', arguments);
+        },
+
+        warn: function () {
+            this._log('warn', arguments);
+        }
+    };
+
+    // Host name of rs
     rs.HOST_NAME = 'http://richanchors.com:8080';
+
+    // Log key for rs
     rs.logKey = {
         TEXT: 'rs_text',
         RS: 'rs_rs',
         HREF: 'rs_href'
     };
 
+    // Delay time for waiting jQuery is ready
+    rs.READY_DELAY = 50;
+
     /**
      * Default template of Recommendations
      */
-    rs.DEFAULT_TEMPLATE = '';
-    rs.DEFAULT_TEMPLATE += '<div class="media">';
-    rs.DEFAULT_TEMPLATE += '    <div class="media-body">';
-    rs.DEFAULT_TEMPLATE += '        <h4 class="media-heading">';
-    rs.DEFAULT_TEMPLATE += '            <a href="{{url}}">{{title}}</a>';
-    rs.DEFAULT_TEMPLATE += '        </h4>';
-    rs.DEFAULT_TEMPLATE += '        <p>{{meta}}</p>';
-    rs.DEFAULT_TEMPLATE += '    </div>';
-    rs.DEFAULT_TEMPLATE += '</div>';
+    rs.DEFAULT_TEMPLATE = '<div><h4><a href="{{url}}">{{title}}</a></h4><p>{{meta}}</p></div>';
 
     /**
      * Check existing of jQuery and store jQuery in '$'. If not, will get jQuery 
      * from jQuery CDN and make it noConflict with current website
      */
-    rs.get$ = function () {
-        log('rs.get$');
-
+    rs.getjQuery = function () {
         if (jQuery) {
+            LOGGER.info('jQuery is existed. Binding rs.$ = jQuery');
             rs.$ = jQuery;
         } else {
+            var jQueryUrl = 'http://code.jquery.com/jquery.min.js';
+            LOGGER.info('jQuery is not existed. Getting jQuery from ' + jQueryUrl);
+
             var jqueryScript = document.createElement('script');
             jqueryScript.onload = function () {
                 rs.$ = jQuery.noConflict();
             };
-            jqueryScript.src = 'http://code.jquery.com/jquery.min.js';
-
-            document.body.appendChild(jqueryScript);
+            jqueryScript.async = true;
+            jqueryScript.src = jQueryUrl;
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jqueryScript, s);
         }
     };
 
     /**
-     * Check jQuery is ready or not. If not, will create a timeout for checking.
+     * Check jQuery and 'document.body' is ready or not. If not, will create a timeout for checking.
      * @param {Function} callback The callback will be called when jQuery is ready
      */
-    rs.on$Ready = function (callback) {
-        log('rs.on$Ready');
+    rs.onReady = function (callback) {
+        rs.getjQuery();
 
         if (!rs.$) {
             setTimeout(function () {
-                rs.on$Ready(callback);
-            }, 50);
+                LOGGER.info('RecSys is not ready. Wait for ' + rs.READY_DELAY + ' ms...');
+                rs.onReady(callback);
+            }, rs.READY_DELAY);
         } else {
             rs.$(function () {
+                LOGGER.info('RecSys is ready!');
                 callback.apply(this);
             });
         };
@@ -299,20 +331,10 @@
         img.src = rs.HOST_NAME + '/logger/?' + queryString;
     };
 
-    /**
-     * Initial RS system
-     */
-    rs.init = function () {
-        log('rs.init');
-
-        rs.get$();
+    rs.onReady = function () {
         rs.initSuggestions();
         rs.initEventHandler();
         rs.initLogger();
-    };
-
-    window.onload = function () {
-        rs.init();
     };
 
 
