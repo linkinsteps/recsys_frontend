@@ -9,7 +9,11 @@
                 args.push.apply(args, logData);
                 args.unshift('[ResSys|' + (methodName.toUpperCase()) + ']');
 
-                console.log.apply(console, args);
+                if (rs.logArray) {
+                    console.log(args);
+                } else {
+                    console.log.apply(console, args);
+                }
             }
         },
 
@@ -32,14 +36,10 @@
         }
     };
 
-<<<<<<< HEAD:rs-cdn/public/rs.js
     // Host name of rs
-    rs.HOST_NAME = 'http://richanchors.com:8080';
+    rs.HOST_NAME = 'http://richanchor.com';
 
     // Log key for rs
-=======
-    rs.HOST_NAME = 'http://richanchor.com';
->>>>>>> 1a94fe09612c3f2434ae25c42db07bcb729847e9:rs-cdn/public/rs-cdn/rs.js
     rs.logKey = {
         TEXT: 'rs_text',
         RS: 'rs_rs',
@@ -52,15 +52,15 @@
     /**
      * Default template of Recommendations
      */
-    rs.DEFAULT_TEMPLATE = '<div><h4><a href="{{url}}">{{title}}</a></h4><p>{{meta}}</p></div>';
+    rs.DEFAULT_TEMPLATE = '<div class="recsys-item"><h4 class="recsys-title"><a class="recsys-link" href="{{url}}">{{title}}</a></h4><p class="recsys-description">{{meta}}</p></div>';
 
     /**
-     * Check existing of jQuery and store jQuery in '$'. If not, will get jQuery 
+     * Check existing of jQuery and store jQuery in 'rs.$'. If not, will get jQuery 
      * from jQuery CDN and make it noConflict with current website
      */
     rs.getjQuery = function () {
-        if (jQuery) {
-            LOGGER.info('jQuery is existed. Binding rs.$ = jQuery');
+        if (window.jQuery) {
+            LOGGER.info('jQuery is existed');
             rs.$ = jQuery;
         } else {
             var jQueryUrl = 'http://code.jquery.com/jquery.min.js';
@@ -68,7 +68,8 @@
 
             var jqueryScript = document.createElement('script');
             jqueryScript.onload = function () {
-                rs.$ = jQuery.noConflict();
+                LOGGER.info('Got jQuery from ' + jQueryUrl);
+                rs.$ = window.jQuery.noConflict();
             };
             jqueryScript.async = true;
             jqueryScript.src = jQueryUrl;
@@ -80,13 +81,15 @@
     /**
      * Check jQuery and 'document.body' is ready or not. If not, will create a timeout for checking.
      * @param {Function} callback The callback will be called when jQuery is ready
+     * @param {Boolean} isFirstTime Is first time call onReady or not
      */
-    rs.onReady = function (callback) {
-        rs.getjQuery();
+    rs.onReady = function (callback, isFirstTime) {
+        if (isFirstTime) {
+            rs.getjQuery();
+        }
 
         if (!rs.$) {
             setTimeout(function () {
-                LOGGER.info('RecSys is not ready. Wait for ' + rs.READY_DELAY + ' ms...');
                 rs.onReady(callback);
             }, rs.READY_DELAY);
         } else {
@@ -98,86 +101,109 @@
     };
 
     /**
-     * Get suggestion for each element on website which has 'data-rs' attribute
+     * Init recommendations for each element on website which has 'data-rs' attribute
      */
-    rs.initSuggestions = function () {
-        log('rs.initSuggestions');
+    rs.initRecs = function () {
+        LOGGER.info('Starting "initRecs"...');
 
-        rs.on$Ready(function () {
-            rs.$('div[data-rs]').each(function () {
-                var target = $(this);
-                var keyword = target.attr('data-keyword');
-
-                rs.getRecommendations(target, keyword);
-            });
+        rs.$('div[data-rs]').each(function () {
+            var target = rs.$(this);
+            
+            rs.getRecs(target);
         });
-    };
 
-    /**
-     * Render recommendation by using 'rs.template'
-     * @param {Object} rec The recommendation object
-     * @return {String}
-     */
-    rs.renderRec = function (rec) {
-        var htmlStr = rs.template || rs.DEFAULT_TEMPLATE;
-
-        for (var prop in rec) {
-            var value = rec[prop];
-            var regex = new RegExp('{{' + prop + '}}', 'g');
-
-            if (prop === 'url') {
-                value = value.replace('http://vbuzz.vn/', 'http://richanchor.com/vbuzz/');
-            }
-
-            htmlStr = htmlStr.replace(regex, value);
-        }
-
-        return htmlStr;
-    };
-
-    /**
-     * Render recommendations from AJAX request
-     * @param {Array<Object>} recs The array list contains all recommendations
-     * @return {String}
-     */
-    rs.renderRecs = function (recs) {
-        log('rs.renderRecs', recs);
-
-        var htmlStr = '';
-
-        for (var i = 0; i < recs.length; i++) {
-            var rec = recs[i];
-
-            htmlStr += rs.renderRec(rec);
-        }
-
-        return htmlStr;
+        LOGGER.info('Ended "initRecs"');;
     };
 
     /**
      * Get recommendations from server and render them
      * @param {jQuery} target The element which has 'data-rs' attribute
-     * @param {String} keyword The keyword for getting recommendations
      */
-    rs.getRecommendations = function (target, keyword) {
-        log('rs.getRecommendations', target, keyword);
-
+    rs.getRecs = function (target) {
         var callbackName = 'getRecs' + (new Date()).getTime();
         var fullCallbackName = 'rs.' + callbackName;
-        var url = window.location.href.replace('http://richanchor.com/vbuzz/', 'http://vbuzz.vn/');
-
+        var url = rs.HOST_NAME + '/compositor/?f=jsonp&title=' + encodeURIComponent(document.title) + '&url=' + encodeURIComponent(window.location.href) + '&callback=' + fullCallbackName;
+        if (rs.demo) {
+            url += '&demo=1';
+        }
         rs[callbackName] = function (resp) {
-            log('rs.' + callbackName, resp);
+            LOGGER.info('Got recommendations from url: ' + url, resp);
 
-            var recsStr = rs.renderRecs(resp.recs);
-            target.html(recsStr);
+            rs.renderRecs(target, resp.recs);
         };
 
+        LOGGER.info('Starting get recommendations from url: ' + url);
         rs.$.ajax({
-            url: rs.HOST_NAME + '/compositor/?f=jsonp&title=' + encodeURIComponent(document.title) + '&url=' + encodeURIComponent(url) + '&callback=' + fullCallbackName,
+            url: url,
             dataType: 'jsonp',
             callback: fullCallbackName
         });
+    };
+
+    /**
+     * Render recommendation by using 'rs.template'
+     * @param {String} recsListTemplate The template string of recommendation
+     * @param {Object} rec The recommendation object
+     * @return {String}
+     */
+    rs.renderRec = function (recsListTemplate, rec) {
+        LOGGER.debug('Starting "renderRec"...', recsListTemplate, rec);
+
+        var htmlStr = recsListTemplate;
+        for (var prop in rec) {
+            var regex = new RegExp('{{' + prop + '}}', 'g');
+
+            htmlStr = htmlStr.replace(regex, rec[prop]);
+        }
+
+        LOGGER.debug('Ended "renderRec" \n', htmlStr);
+        return htmlStr;
+    };
+
+    /**
+     * Render recommendations from AJAX request
+     * @param {jQuery} target The rs targeted object
+     * @param {Array<Object>} recs The array list contains all recommendations
+     * @return {String}
+     */
+    rs.renderRecs = function (target, recs) {
+        LOGGER.info('Starting "renderRecs"...', target, recs)
+
+        var template = target.find('script[type="text\\/template"]').html();
+
+        if (recs.length > 0) {
+            if (template) {
+                template = rs.$('<div />').html(template);
+                var recsList = template.find('[data-rs-list]');
+                var recsListTemplate = recsList.length > 0 ? recsList.html().trim() : '';
+                if (!recsListTemplate) {
+                    LOGGER.warn('There is not template for data list. Use default template for recommendations list');
+                    recsListTemplate = rs.DEFAULT_TEMPLATE;
+                } else {
+                    LOGGER.debug('Template for recommendations: \n', recsListTemplate);
+                }
+
+                var recsListStr = '';
+                for (var i = 0, rec; rec = recs[i]; i++) {
+                    recsListStr += rs.renderRec(recsListTemplate, rec);
+                }
+                LOGGER.debug('Recommendations html: \n' + recsListStr);
+
+                if (recsList.length > 0) {
+                    recsList.html(recsListStr);
+                } else {
+                    template.append(recsListStr);
+                }
+
+                target.append(template.html());
+            } else {
+                LOGGER.error('There is no template! "renderRecs" skipped!')
+            }
+        } else {
+            LOGGER.info('Recommendations from server is empty. "renderRecs" skipped!');
+        }
+
+        LOGGER.info('Ended "renderRecs"');
     };
 
     /**
@@ -186,7 +212,7 @@
      * @return {Object}
      */
     rs.getHrefInfo = function (href) {
-        log('rs.getHrefInfo', href);
+        LOGGER.debug('Starting "getHrefInfo"...', href);
 
         var hrefNoQuery = href;
         var queryString = '';
@@ -206,11 +232,14 @@
             }
         }
 
-        return {
+        var result = {
             hrefNoQuery: hrefNoQuery,
             queryString: queryString,
             hash: hash
         };
+
+        LOGGER.debug('Ended "getHrefInfo"', result);
+        return result;
     };
 
     /**
@@ -220,8 +249,9 @@
      * @return {String|Null}
      */
     rs.getQueryString = function (href, key) {
-        log('rs.getQueryString', href, key);
+        LOGGER.debug('Starting "getQueryString"...', href, key);
 
+        var value = null;
         var info = rs.getHrefInfo(href);
         var queryString = info.queryString;
         queryString = queryString.split('&');
@@ -231,12 +261,14 @@
                 var pair = queryString[i].split('=');
 
                 if (pair[0] === key) {
-                    return decodeURIComponent(pair[1]);
+                    var value = decodeURIComponent(pair[1]);
+                    break;
                 }
             }
         }
 
-        return null;
+        LOGGER.debug('Ended "getQueryString"', value);
+        return value;
     };
 
     /**
@@ -247,7 +279,7 @@
      * @param {String}
      */
     rs.setQueryString = function (href, key, value) {
-        log('rs.setQueryString', href, key, value);
+        LOGGER.debug('Starting "setQueryString"...', href, key, value);
 
         var info = rs.getHrefInfo(href);
         var isExisted = false;
@@ -272,7 +304,10 @@
             queryString.push(key + '=' + encodeURIComponent(value));
         }
 
-        return info.hrefNoQuery + '?' + queryString.join('&') + (info.hash ? '#' + info.hash : '');
+        var newHref = info.hrefNoQuery + '?' + queryString.join('&') + (info.hash ? '#' + info.hash : '');
+
+        LOGGER.debug('Ended "setQueryString"', newHref);
+        return newHref;
     };
 
     /**
@@ -282,7 +317,7 @@
      * @param {String}
      */
     rs.setQueryStrings = function (href, data) {
-        log('rs.setQueryStrings', href, data);
+        LOGGER.debug('Starting "setQueryStrings"...', href, data);
 
         for (var key in data) {
             var value = data[key];
@@ -290,6 +325,7 @@
             href = rs.setQueryString(href, key, value);
         }
 
+        LOGGER.debug('Ended "setQueryStrings"', href);
         return href;
     };
 
@@ -297,14 +333,14 @@
      * Init event handler for all links in current HTML page
      */
     rs.initEventHandler = function () {
-        log('rs.initEventHandler');
+        LOGGER.info('Starting "initEventHandler"...');
 
-        $(document).on({
+        rs.$(document).on({
             mousedown: function () {
-                var a = $(this);
+                var a = rs.$(this);
                 var href = a.prop('href');
                 var logData = {};
-                logData[rs.logKey.TEXT] = a.text().trim().replace(/\s*([^\s]+\s?)\s*/g, '$1');
+                logData[rs.logKey.TEXT] = a.text().trim().replace(/\s*([^\s]+\s?)\s*/g, 'rs.$1');
                 logData[rs.logKey.RS] = !!a.parents('[data-rs]')[0];
                 logData[rs.logKey.HREF] = href;
                 href = rs.setQueryStrings(href, logData);
@@ -312,21 +348,31 @@
                 a.attr('href', href);
             }
         }, 'a');
+
+        LOGGER.info('Ended "initEventHandler"');
     };
 
     /**
      * Init logger for current
      */
     rs.initLogger = function () {
-        log('rs.initLogger');
+        LOGGER.info('Starting "initLogger"...');
 
         var href = window.location.href;
-        var logData = {};
-        logData[rs.logKey.TEXT] = rs.getQueryString(href, rs.logKey.TEXT);
-        logData[rs.logKey.RS] = rs.getQueryString(href, rs.logKey.RS);
-        logData[rs.logKey.HREF] = rs.getQueryString(href, rs.logKey.HREF);
+        var text = rs.getQueryString(href, rs.logKey.TEXT);
+        var isRs = rs.getQueryString(href, rs.logKey.RS);
+        var href = rs.getQueryString(href, rs.logKey.HREF);
 
-        rs.log(logData);
+        if (text && rs && href) {
+            var logData = {};
+            logData[rs.logKey.TEXT] = text;
+            logData[rs.logKey.RS] = isRs;
+            logData[rs.logKey.HREF] = href;
+
+            rs.log(logData);
+        }
+
+        LOGGER.info('Ended "initLogger"');
     };
 
     /**
@@ -334,18 +380,23 @@
      * @param {Object} data The log data
      */
     rs.log = function (data) {
-        log('rs.log', data);
+        LOGGER.info('Starting "log"...', data);
 
         var queryString = rs.$.param(data);
         var img = document.createElement('img');
         img.src = rs.HOST_NAME + '/logger/?' + queryString;
+
+        LOGGER.info('Ended "log"');
     };
 
-    rs.onReady = function () {
-        rs.initSuggestions();
+    /**
+     * Run RecSys after jQuery and 'document.body' are ready
+     */
+    rs.onReady(function () {
+        rs.initRecs();
         rs.initEventHandler();
         rs.initLogger();
-    };
+    }, true);
 
 
 })(rs = window.rs || {});

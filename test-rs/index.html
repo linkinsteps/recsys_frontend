@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="assets/plugins/bootstrap/3.3.4/css/bootstrap.min.css" />
-    <script type="text/javascript" src="assets/plugins/jquery/1.11.2/jquery-1.11.2.min.js"></script>
-    <script type="text/javascript" src="http://localhost:6969/rs.js"></script>
+    <script type="text/javascript"></script>
+    
 </head>
 
 <body>
@@ -108,20 +108,23 @@
                         (function() {
                             var rs = window.rs || (window.rs = {});
                             if (!rs.loaded) {
-                                var rs = document.createElement('script');
-                                rs.async = true;
-                                rs.src = 'http://richanchor.com:6969/rs.js';
+                                var rsScript = document.createElement('script');
+                                rsScript.async = true;
+                                rsScript.src = 'http://localhost:6969/rs-cdn/rs.js';
                                 var s = document.getElementsByTagName('script')[0];
-                                s.parentNode.insertBefore(rs, s);
+                                s.parentNode.insertBefore(rsScript, s);
                                 rs.loaded = true;
                             }
+                            rs.demo = true;
+                            rs.debug = true;
+                            rs.logArray = true;
                         })();
                     </script>
                 </div>
                 <div data-rs>
                     <script type="text/template">
-                        <h2>Related content</h2>
-                        <div data-rs-list>
+                        <h2>Related content Yolo</h2>
+                        <div data-rs-list class="a">
                             <div class="media">
                                 <div class="media-body">
                                     <h4 class="media-heading">
@@ -136,11 +139,11 @@
                         (function() {
                             var rs = window.rs || (window.rs = {});
                             if (!rs.loaded) {
-                                var rs = document.createElement('script');
-                                rs.async = true;
-                                rs.src = 'http://richanchor.com:6969/rs.js';
+                                var rsScript = document.createElement('script');
+                                rsScript.async = true;
+                                rsScript.src = 'http://localhost:6969/rs-cdn/rs.js';
                                 var s = document.getElementsByTagName('script')[0];
-                                s.parentNode.insertBefore(rs, s);
+                                s.parentNode.insertBefore(rsScript, s);
                                 rs.loaded = true;
                             }
                         })();
@@ -165,11 +168,26 @@
                     (function() {
                         var rs = window.rs || (window.rs = {});
                         if (!rs.loaded) {
-                            var rs = document.createElement('script');
-                            rs.async = true;
-                            rs.src = 'http://richanchor.com:6969/rs.js';
+                            var rsScript = document.createElement('script');
+                            rsScript.async = true;
+                            rsScript.src = 'http://localhost:6969/rs-cdn/rs.js';
                             var s = document.getElementsByTagName('script')[0];
-                            s.parentNode.insertBefore(rs, s);
+                            s.parentNode.insertBefore(rsScript, s);
+                            rs.loaded = true;
+                        }
+                    })();
+                </script>
+            </div> 
+            <div data-rs>
+                <script type="text/javascript">
+                    (function() {
+                        var rs = window.rs || (window.rs = {});
+                        if (!rs.loaded) {
+                            var rsScript = document.createElement('script');
+                            rsScript.async = true;
+                            rsScript.src = 'http://localhost:6969/rs-cdn/rs.js';
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(rsScript, s);
                             rs.loaded = true;
                         }
                     })();
