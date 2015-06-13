@@ -32,7 +32,7 @@ Clone source code of `RecSys Frontend`
 3. Save this file
 
 ### Step 5 - Init your own local-vbuzz
-1. Open file `/recsys_frontend/local-vbuzzn/app.js`
+1. Open file `/recsys_frontend/local-vbuzz/app.js`
 2. At `line 63`, change `3000` to your expected port number
 3. Run NodeJS app for `local-vbuzz`
 
