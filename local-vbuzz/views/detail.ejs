@@ -281,42 +281,45 @@
     <div class="page-content-right">
         <div class="content-right-bor">  
             <!-- HOT NEWS -->
-            <div class="hotnews">
-                <h3><span class="title">
-                    <span class="plus">+</span>
-                        Tin liên quan
-                    </span>
-                </h3>
-                <div class="style-news-lis-6">
-                    <div data-rs data-keyword="porn"></div>
-                    <script type="text/javascript">
-                        (function() {
-                            var rs = window.rs || (window.rs = {});
-                            if (!rs.loaded) {
-                                var rs = document.createElement('script');
-                                rs.async = true;
-                                rs.src = 'http://richanchor.com/rs-cdn/rs.js';
-                                var s = document.getElementsByTagName('script')[0];
-                                s.parentNode.insertBefore(rs, s);
-                                rs.loaded = true;
-                            }                            
-                        })();
-
-                        rs.template = '';
-                        rs.template += '<div class="nsl-6-content clearfix">';
-                        rs.template += '    <div class="h2Title">';
-                        rs.template += '        <a href="{{url}}">';
-                        rs.template += '            {{title}}';
-                        rs.template += '        </a>';
-                        rs.template += '    </div>';
-                        rs.template += '    <p>';
-                        rs.template += '        <a href="{{url}}">';
-                        rs.template += '            {{meta}}';
-                        rs.template += '        </a>';
-                        rs.template += '    </p>';
-                        rs.template += '</div>';
-                    </script>
-                </div>
+            <div data-rs>
+                <script type="text/template">
+                    <div class="hotnews">
+                        <h3><span class="title">
+                            <span class="plus">+</span>
+                                Tin liên quan
+                            </span>
+                        </h3>
+                        <div class="style-news-lis-6">
+                            <div data-rs-list>
+                                <div class="nsl-6-content clearfix">
+                                    <div class="h2Title">
+                                        <a href="{{url}}">
+                                            {{title}}
+                                        </a>
+                                    </div>
+                                    <p>
+                                        <a href="{{url}}">
+                                            {{meta}}
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </script>
+                <script type="text/javascript">
+                    (function() {
+                        var rs = window.rs || (window.rs = {});
+                        if (!rs.loaded) {
+                            var rsScript = document.createElement('script');
+                            rsScript.async = true;
+                            rsScript.src = 'http://localhost:6969/rs-cdn/rs.js';
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(rsScript, s);
+                            rs.loaded = true;
+                        }
+                    })();
+                </script>
             </div>
 
             <!-- HOT NEWS -->
