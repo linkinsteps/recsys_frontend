@@ -340,7 +340,7 @@
                 var a = rs.$(this);
                 var href = a.prop('href');
                 var logData = {};
-                logData[rs.logKey.TEXT] = a.text().trim().replace(/\s*([^\s]+\s?)\s*/g, 'rs.$1');
+                logData[rs.logKey.TEXT] = a.text().trim().replace(/\s*([^\s]+\s?)\s*/g, '$1');
                 logData[rs.logKey.RS] = !!a.parents('[data-rs]')[0];
                 logData[rs.logKey.HREF] = href;
                 href = rs.setQueryStrings(href, logData);
@@ -363,7 +363,7 @@
         var isRs = rs.getQueryString(href, rs.logKey.RS);
         var href = rs.getQueryString(href, rs.logKey.HREF);
 
-        if (text && rs && href) {
+        if (href) {
             var logData = {};
             logData[rs.logKey.TEXT] = text;
             logData[rs.logKey.RS] = isRs;
