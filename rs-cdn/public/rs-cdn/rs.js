@@ -198,6 +198,10 @@
                 }
 
                 target.append(template.html());
+
+                if (typeof rs.afterRender === 'function') {
+                    rs.afterRender.call(null, target, rs.$);
+                }
             } else {
                 LOGGER.error('There is no template! [renderRecs()] skipped!')
             }
@@ -387,9 +391,9 @@
      * Run RecSys after jQuery and 'document.body' are ready
      */
     rs.onReady(function () {
+        rs.initLogger();
         rs.initRecs();
         rs.initEventHandler();
-        rs.initLogger();
     }, true);
 
 
