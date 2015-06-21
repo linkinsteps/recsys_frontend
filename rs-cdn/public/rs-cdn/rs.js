@@ -59,6 +59,8 @@
      * from jQuery CDN and make it noConflict with current website
      */
     rs.getjQuery = function () {
+        LOGGER.info('[getjQuery()]');
+
         if (window.jQuery) {
             LOGGER.info('jQuery is existed');
             rs.$ = jQuery;
@@ -104,15 +106,13 @@
      * Init recommendations for each element on website which has 'data-rs' attribute
      */
     rs.initRecs = function () {
-        LOGGER.info('Starting "initRecs"...');
+        LOGGER.info('[initRecs()]');
 
         rs.$('div[data-rs]').each(function () {
             var target = rs.$(this);
             
             rs.getRecs(target);
         });
-
-        LOGGER.info('Ended "initRecs"');;
     };
 
     /**
@@ -120,6 +120,8 @@
      * @param {jQuery} target The element which has 'data-rs' attribute
      */
     rs.getRecs = function (target) {
+        LOGGER.info('[getRecs()]', target);
+
         var callbackName = 'getRecs' + (new Date()).getTime();
         var fullCallbackName = 'rs.' + callbackName;
         var url = rs.HOST_NAME + '/compositor/?f=jsonp&title=' + encodeURIComponent(document.title) + '&url=' + encodeURIComponent(window.location.href) + '&callback=' + fullCallbackName;
@@ -147,7 +149,7 @@
      * @return {String}
      */
     rs.renderRec = function (recsListTemplate, rec) {
-        LOGGER.debug('Starting "renderRec"...', recsListTemplate, rec);
+        LOGGER.debug('[renderRec()]', recsListTemplate, rec);
 
         var htmlStr = recsListTemplate;
         for (var prop in rec) {
@@ -156,7 +158,7 @@
             htmlStr = htmlStr.replace(regex, rec[prop]);
         }
 
-        LOGGER.debug('Ended "renderRec" \n', htmlStr);
+        LOGGER.debug('[renderRec() => ] \n', htmlStr);
         return htmlStr;
     };
 
@@ -167,7 +169,7 @@
      * @return {String}
      */
     rs.renderRecs = function (target, recs) {
-        LOGGER.info('Starting "renderRecs"...', target, recs)
+        LOGGER.info('[renderRecs()]', target, recs)
 
         var template = target.find('script[type="text\\/template"]').html();
 
@@ -197,13 +199,11 @@
 
                 target.append(template.html());
             } else {
-                LOGGER.error('There is no template! "renderRecs" skipped!')
+                LOGGER.error('There is no template! [renderRecs()] skipped!')
             }
         } else {
-            LOGGER.info('Recommendations from server is empty. "renderRecs" skipped!');
+            LOGGER.info('Recommendations from server is empty. [renderRecs()] skipped!');
         }
-
-        LOGGER.info('Ended "renderRecs"');
     };
 
     /**
@@ -212,7 +212,7 @@
      * @return {Object}
      */
     rs.getHrefInfo = function (href) {
-        LOGGER.debug('Starting "getHrefInfo"...', href);
+        LOGGER.debug('[getHrefInfo()]', href);
 
         var hrefNoQuery = href;
         var queryString = '';
@@ -238,7 +238,7 @@
             hash: hash
         };
 
-        LOGGER.debug('Ended "getHrefInfo"', result);
+        LOGGER.debug('[getHrefInfo() => ]', result);
         return result;
     };
 
@@ -249,7 +249,7 @@
      * @return {String|Null}
      */
     rs.getQueryString = function (href, key) {
-        LOGGER.debug('Starting "getQueryString"...', href, key);
+        LOGGER.debug('[getQueryString()]', href, key);
 
         var value = null;
         var info = rs.getHrefInfo(href);
@@ -267,7 +267,7 @@
             }
         }
 
-        LOGGER.debug('Ended "getQueryString"', value);
+        LOGGER.debug('[getQueryString() => ]', value);
         return value;
     };
 
@@ -279,7 +279,7 @@
      * @param {String}
      */
     rs.setQueryString = function (href, key, value) {
-        LOGGER.debug('Starting "setQueryString"...', href, key, value);
+        LOGGER.debug('[setQueryString()]', href, key, value);
 
         var info = rs.getHrefInfo(href);
         var isExisted = false;
@@ -306,7 +306,7 @@
 
         var newHref = info.hrefNoQuery + '?' + queryString.join('&') + (info.hash ? '#' + info.hash : '');
 
-        LOGGER.debug('Ended "setQueryString"', newHref);
+        LOGGER.debug('[setQueryString() => ]', newHref);
         return newHref;
     };
 
@@ -317,7 +317,7 @@
      * @param {String}
      */
     rs.setQueryStrings = function (href, data) {
-        LOGGER.debug('Starting "setQueryStrings"...', href, data);
+        LOGGER.debug('[setQueryStrings()]', href, data);
 
         for (var key in data) {
             var value = data[key];
@@ -325,7 +325,7 @@
             href = rs.setQueryString(href, key, value);
         }
 
-        LOGGER.debug('Ended "setQueryStrings"', href);
+        LOGGER.debug('[setQueryStrings() => ]', href);
         return href;
     };
 
@@ -333,7 +333,7 @@
      * Init event handler for all links in current HTML page
      */
     rs.initEventHandler = function () {
-        LOGGER.info('Starting "initEventHandler"...');
+        LOGGER.info('[initEventHandler()]');
 
         rs.$(document).on({
             mousedown: function () {
@@ -348,15 +348,13 @@
                 a.attr('href', href);
             }
         }, 'a');
-
-        LOGGER.info('Ended "initEventHandler"');
     };
 
     /**
      * Init logger for current
      */
     rs.initLogger = function () {
-        LOGGER.info('Starting "initLogger"...');
+        LOGGER.info('[initLogger()]');
 
         var href = window.location.href;
         var text = rs.getQueryString(href, rs.logKey.TEXT);
@@ -371,8 +369,6 @@
 
             rs.log(logData);
         }
-
-        LOGGER.info('Ended "initLogger"');
     };
 
     /**
@@ -380,13 +376,11 @@
      * @param {Object} data The log data
      */
     rs.log = function (data) {
-        LOGGER.info('Starting "log"...', data);
+        LOGGER.info('[log()]', data);
 
         var queryString = rs.$.param(data);
         var img = document.createElement('img');
         img.src = rs.HOST_NAME + '/logger/?' + queryString;
-
-        LOGGER.info('Ended "log"');
     };
 
     /**
