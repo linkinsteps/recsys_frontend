@@ -189,6 +189,10 @@
                 for (var i = 0, rec; rec = recs[i]; i++) {
                     recsListStr += rs.renderRec(recsListTemplate, rec);
                 }
+
+                // Make sure that there is no template values which are available in HTML code
+                recsListStr = recsListStrreplace(/\{\{[a-zA-Z0-9]*\}\}/g, '');
+
                 LOGGER.debug('Recommendations html: \n' + recsListStr);
 
                 if (recsList.length > 0) {
