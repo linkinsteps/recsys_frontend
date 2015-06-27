@@ -191,7 +191,7 @@
                 }
 
                 // Make sure that there is no template values which are available in HTML code
-                recsListStr = recsListStrreplace(/\{\{[a-zA-Z0-9]*\}\}/g, '');
+                recsListStr = recsListStr.replace(/\{\{[a-zA-Z0-9]*\}\}/g, '');
 
                 LOGGER.debug('Recommendations html: \n' + recsListStr);
 
