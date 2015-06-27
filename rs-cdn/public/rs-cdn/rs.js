@@ -124,10 +124,13 @@
 
         var callbackName = 'getRecs' + (new Date()).getTime();
         var fullCallbackName = 'rs.' + callbackName;
-        var url = rs.HOST_NAME + '/compositor/?f=jsonp&title=' + encodeURIComponent(document.title) + '&url=' + encodeURIComponent(window.location.href) + '&callback=' + fullCallbackName;
+        var title = document.title;
+        var href = rs.removeRsQueryString(window.location.href);
+        var url = rs.HOST_NAME + '/compositor/?f=jsonp&title=' + encodeURIComponent(title) + '&url=' + encodeURIComponent(href) + '&callback=' + fullCallbackName;
         if (rs.demo) {
             url += '&demo=1';
         }
+
         rs[callbackName] = function (resp) {
             LOGGER.info('Got recommendations from url: ' + url, resp);
 
@@ -226,28 +229,12 @@
     rs.getHrefInfo = function (href) {
         LOGGER.debug('[getHrefInfo()]', href);
 
-        var hrefNoQuery = href;
-        var queryString = '';
-        var hash = '';
-
-        var temp = href.split('?');
-
-        if (temp[1]) {
-            hrefNoQuery = temp[0];
-            queryString = temp[1];
-
-            temp = queryString.split('#');
-
-            if (temp[1]) {
-                queryString = temp[0];
-                hash = temp[1];
-            }
-        }
-
+        var urlRegex = /([^?#]+)(\?*)([^#]*)(#{0,1})(.*)/;
+        var info = urlRegex.exec(href);
         var result = {
-            hrefNoQuery: hrefNoQuery,
-            queryString: queryString,
-            hash: hash
+            hrefNoQuery: info[1],
+            queryString: info[3],
+            hash: info[5]
         };
 
         LOGGER.debug('[getHrefInfo() => ]', result);
@@ -288,7 +275,7 @@
      * @param {String} href
      * @param {String} key
      * @param {String} value
-     * @param {String}
+     * @return {String}
      */
     rs.setQueryString = function (href, key, value) {
         LOGGER.debug('[setQueryString()]', href, key, value);
@@ -326,7 +313,7 @@
      * Set query string values for a href
      * @param {String} href
      * @param {Object} data
-     * @param {String}
+     * @return {String}
      */
     rs.setQueryStrings = function (href, data) {
         LOGGER.debug('[setQueryStrings()]', href, data);
@@ -339,6 +326,39 @@
 
         LOGGER.debug('[setQueryStrings() => ]', href);
         return href;
+    };
+
+    /**
+     * Remove all rs query string in url
+     * @param {String} href
+     * @return {String}
+     */
+    rs.removeRsQueryString = function (href) {
+        LOGGER.debug('[removeRsQueryString()]', href);
+
+        var info = rs.getHrefInfo(href);
+        var isExisted = false;
+        var queryString = info.queryString;
+        queryString = queryString.split('&');
+        var newHref = info.hrefNoQuery;
+
+        if (queryString[0]) {
+            var newQueryString = [];
+            for (var i = 0; i < queryString.length; i++) {
+                var pair = queryString[i].split('=');
+
+                if (pair[0].indexOf('rs_') > 0) {
+                    newQueryString.push(pair);
+                }
+            }
+
+            if (newQueryString.length > 0) {
+                newHref += '?' + newQueryString.join('&');
+            }
+        }
+
+        LOGGER.debug('[removeRsQueryString() => ]', newHref);
+        return newHref;
     };
 
     /**
