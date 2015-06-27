@@ -151,11 +151,15 @@
     rs.renderRec = function (recsListTemplate, rec) {
         LOGGER.debug('[renderRec()]', recsListTemplate, rec);
 
-        var htmlStr = recsListTemplate;
-        for (var prop in rec) {
-            var regex = new RegExp('{{' + prop + '}}', 'g');
+        var htmlStr = '';
 
-            htmlStr = htmlStr.replace(regex, rec[prop]);
+        if (rec.image && +rec.price > 0) {
+            var htmlStr = recsListTemplate;
+            for (var prop in rec) {
+                var regex = new RegExp('{{' + prop + '}}', 'g');
+
+                htmlStr = htmlStr.replace(regex, rec[prop]);
+            }
         }
 
         LOGGER.debug('[renderRec() => ] \n', htmlStr);
