@@ -168,6 +168,8 @@
 
         if (rs.demo) {
             data.url = 'http://vbuzz.vn';
+            data.title = 'Sơn Tùng M-TP';
+            data.demo = 1;
         }
 
         rs[callbackName] = function (resp) {
