@@ -38,6 +38,8 @@
 
     // Host name of rs
     rs.HOST_NAME = 'http://richanchor.com';
+    rs.URL_JQUERY = rs.HOST_NAME + '/rs-cdn/jquery-1.8.3.min.js';
+    rs.URL_MUSTACHE = rs.HOST_NAME + '/rs-cdn/mustache-2.1.2.min.js';
 
     // Log key for rs
     rs.logKey = {
@@ -65,16 +67,15 @@
             LOGGER.info('jQuery is existed');
             rs.$ = jQuery;
         } else {
-            var jQueryUrl = 'http://code.jquery.com/jquery.min.js';
-            LOGGER.info('jQuery is not existed. Getting jQuery from ' + jQueryUrl);
+            LOGGER.info('jQuery is not existed.');
 
             var jqueryScript = document.createElement('script');
             jqueryScript.onload = function () {
-                LOGGER.info('Got jQuery from ' + jQueryUrl);
+                LOGGER.info('Got jQuery');
                 rs.$ = window.jQuery.noConflict();
             };
             jqueryScript.async = true;
-            jqueryScript.src = jQueryUrl;
+            jqueryScript.src = rs.URL_JQUERY;
             var s = document.getElementsByTagName('script')[0];
             s.parentNode.insertBefore(jqueryScript, s);
         }
