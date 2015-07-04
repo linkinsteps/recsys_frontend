@@ -159,7 +159,7 @@
         var fullCallbackName = 'rs.' + callbackName;
         var title = document.title;
         var href = rs.removeRsQueryString(window.location.href);
-        var url = rs.HOST_NAME + '/compositor/?f=jsonp&title=' + encodeURIComponent(title) + '&url=' + encodeURIComponent(href) + '&callback=' + fullCallbackName;
+        var url = rs.HOST_NAME + '/compositor/?f=jsonp&title=' + encodeURIComponent(title) + '&url=' + encodeURIComponent(href) + '&callback=?';
         if (rs.demo) {
             url += '&demo=1';
         }
@@ -174,7 +174,7 @@
         rs.$.ajax({
             url: url,
             dataType: 'jsonp',
-            callback: fullCallbackName
+            jsonpCallback: fullCallbackName
         });
     };
 
