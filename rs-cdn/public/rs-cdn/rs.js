@@ -57,41 +57,73 @@
     rs.DEFAULT_TEMPLATE = '<div class="recsys-item"><h4 class="recsys-title"><a class="recsys-link" href="{{url}}">{{title}}</a></h4><p class="recsys-description">{{meta}}</p></div>';
 
     /**
+     * Getting a script with callback
+     * @param {String} url The url script
+     * @param {Funtion} callback The callback will be called after script is loaded
+     */
+    rs.getScript = function (url, callback) {
+        var script = document.createElement('script');
+        script.onload = callback;
+        script.async = true;
+        script.src = url;
+
+        // First script tag
+        var fScript = document.getElementsByTagName('script')[0];
+        fScript.parentNode.insertBefore(script, fScript);
+    }
+
+    /**
      * Check existing of jQuery and store jQuery in 'rs.$'. If not, will get jQuery 
-     * from jQuery CDN and make it noConflict with current website
+     * from RS CDN and make it noConflict with current website
      */
     rs.getjQuery = function () {
         LOGGER.info('[getjQuery()]');
 
         if (window.jQuery) {
-            LOGGER.info('jQuery is existed');
+            LOGGER.info('jQuery exists');
             rs.$ = jQuery;
         } else {
-            LOGGER.info('jQuery is not existed.');
+            LOGGER.info('jQuery does not exist');
 
-            var jqueryScript = document.createElement('script');
-            jqueryScript.onload = function () {
+            rs.getScript(rs.URL_JQUERY, function () {
                 LOGGER.info('Got jQuery');
                 rs.$ = window.jQuery.noConflict();
-            };
-            jqueryScript.async = true;
-            jqueryScript.src = rs.URL_JQUERY;
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jqueryScript, s);
+            });
         }
     };
 
     /**
-     * Check jQuery and 'document.body' is ready or not. If not, will create a timeout for checking.
+     * Check existing of Mustache and store Mustache in 'rs.Mustache'. If not, will get Mustache 
+     * from RS CDN
+     */
+    rs.getMustache = function () {
+        LOGGER.info('[getMustache()]');
+
+        if (window.Mustache) {
+            LOGGER.info('Mustache exists');
+        } else {
+            LOGGER.info('Mustache does not exist');
+
+            rs.getScript(rs.URL_MUSTACHE, function () {
+                LOGGER.info('Got Mustache');
+                rs.Mustache = window.Mustache;
+            });
+        }
+    };
+
+
+    /**
+     * Check jQuery, Mustache and 'document.body' is ready or not. If not, will create a timeout for checking.
      * @param {Function} callback The callback will be called when jQuery is ready
      * @param {Boolean} isFirstTime Is first time call onReady or not
      */
     rs.onReady = function (callback, isFirstTime) {
         if (isFirstTime) {
             rs.getjQuery();
+            rs.getMustache();
         }
 
-        if (!rs.$) {
+        if (!rs.$ || !rs.Mustache) {
             setTimeout(function () {
                 rs.onReady(callback);
             }, rs.READY_DELAY);
@@ -155,16 +187,7 @@
     rs.renderRec = function (recsListTemplate, rec) {
         LOGGER.debug('[renderRec()]', recsListTemplate, rec);
 
-        var htmlStr = '';
-
-        if (rec.image && +rec.price > 0) {
-            var htmlStr = recsListTemplate;
-            for (var prop in rec) {
-                var regex = new RegExp('{{' + prop + '}}', 'g');
-
-                htmlStr = htmlStr.replace(regex, rec[prop]);
-            }
-        }
+        var htmlStr = rs.Mustache.render(recsListTemplate, rec);        
 
         LOGGER.debug('[renderRec() => ] \n', htmlStr);
         return htmlStr;
@@ -199,7 +222,7 @@
                 }
 
                 // Make sure that there is no template values which are available in HTML code
-                recsListStr = recsListStr.replace(/\{\{[a-zA-Z0-9]*\}\}/g, '');
+                //recsListStr = recsListStr.replace(/\{\{[a-zA-Z0-9]*\}\}/g, '');
 
                 LOGGER.debug('Recommendations html: \n' + recsListStr);
 
