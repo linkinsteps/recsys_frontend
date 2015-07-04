@@ -159,9 +159,15 @@
         var fullCallbackName = 'rs.' + callbackName;
         var title = document.title;
         var href = rs.removeRsQueryString(window.location.href);
-        var url = rs.HOST_NAME + '/compositor/?f=jsonp&title=' + encodeURIComponent(title) + '&url=' + encodeURIComponent(href) + '&callback=?';
+        var url = rs.HOST_NAME + '/compositor/';
+        var data = {
+            f: 'jsonp',
+            title: encodeURIComponent(title),
+            url: encodeURIComponent(href)
+        };
+
         if (rs.demo) {
-            url += '&demo=1';
+            data.url = 'http://vbuzz.vn';
         }
 
         rs[callbackName] = function (resp) {
@@ -173,6 +179,7 @@
         LOGGER.info('Starting get recommendations from url: ' + url);
         rs.$.ajax({
             url: url,
+            data: data,
             dataType: 'jsonp',
             jsonpCallback: fullCallbackName
         });
