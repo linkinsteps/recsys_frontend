@@ -1,3 +1,190 @@
 @import "assets/plugins/bootstrap/3.3.5/less/bootstrap.less";
 
-@brand-success: green;
+// =============================================================
+// Variable
+// =============================================================
+// RS Colors
+@rsBlue: #16a5b5;
+@rsBlack: #1f1c1b;
+@rsGrey: #a1a1a1;
+@white: #fff;
+
+// Overwrite Bootstrap variables
+@brand-success: @rsBlue;
+@link-color: @brand-success;
+@font-family-base: "Roboto", @font-family-sans-serif;
+@headings-font-weight: 300;
+@icon-font-path: "../plugins/bootstrap/3.3.5/fonts/";
+
+// =============================================================
+// Overwrite
+// =============================================================
+.btn-link {
+    &,
+    &:hover {
+        border-color: @white;
+        color: mix(@white, @rsBlue);
+        text-decoration: none;
+    }
+
+    &:hover {
+        color: @white;
+    }
+}
+
+// =============================================================
+// Layout
+// =============================================================
+body {
+    font-weight: 300;
+}
+
+// Navbar
+#rs-navbar {
+    background: none;
+    border: none;
+    height: 70px;
+    padding: 20px;
+    .transition(all 0.3s);
+    margin: 0;
+
+    .navbar-brand {
+        padding: 0;
+        margin: 0;
+        position: relative;
+        .size(188px, 30px);
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            .transition(all 0.3s);
+
+            &.logo {
+                opacity: 0;
+            }
+
+            &.logo-white {
+                opacity: 1;
+            }
+        }
+    }
+
+    .navbar-nav {
+        > li {
+            > a {
+                height: 30px;
+                line-height: 30px;
+                padding: 0 15px;
+                color: @white;
+                font-size: 16px;
+                font-weight: 400;
+                background: none;
+
+                &:hover {
+                    border-bottom: 2px solid @white;
+                }
+            }
+
+            &.active {
+                > a {
+                    border-bottom: 2px solid @white;
+                }
+            }
+        }
+    }
+
+    &.navbar-white {
+        background: @white;
+
+        .navbar-brand {
+            img {
+                &.logo {
+                    opacity: 1;
+                }
+
+                &.logo-white {
+                    opacity: 0;
+                }
+            }
+        }
+
+        .navbar-nav {
+            > li {
+                > a {
+                    color: @rsBlue;
+
+                    &:hover {
+                        border-bottom-color: @rsBlue;
+                    }
+                }
+
+                &.active {
+                    > a {
+                        border-bottom-color: @rsBlue;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Footer
+footer {
+    background: @rsBlack;
+    padding: 40px 0;    
+
+    &,
+    a,
+    a:hover {
+        color: @rsGrey;
+    }
+}
+
+// =============================================================
+// Homepage
+// =============================================================
+.homepage {
+    > section,
+    > footer {
+        position: relative;
+        z-index: 2;
+    }
+}
+
+// Home banner
+.home-banner {
+    z-index: 1;
+    overflow: hidden;
+
+    .home-banner-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url(../img/bg_home_01.png) no-repeat 50% 50%;
+        background-size: cover;
+        z-index: 1;
+    }
+
+    .home-banner-inner{
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: @rsBlue;
+        padding: 35px 0;
+        z-index: 2;
+        color: @white;
+
+        h2 {
+            margin: 0 10px 0 0;
+        }
+
+        h2, a {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+}
