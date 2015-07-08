@@ -4,32 +4,42 @@
 // Variable
 // =============================================================
 // RS Colors
-@rsBlue: #16a5b5;
-@rsBlack: #1f1c1b;
-@rsGrey: #a1a1a1;
-@white: #fff;
+@rsBlue                 : #16a5b5;
+@rsBlack                : #1f1c1b;
+@rsGrey                 : #a1a1a1;
+@rsOrange               : #e87915;
+@white                  : #fff;
 
 // Overwrite Bootstrap variables
-@brand-success: @rsBlue;
-@link-color: @brand-success;
-@font-family-base: "Roboto", @font-family-sans-serif;
-@headings-font-weight: 300;
-@icon-font-path: "../plugins/bootstrap/3.3.5/fonts/";
+@brand-success          : @rsBlue;
+@brand-warn             : @rsOrange;
+@link-color             : @brand-success;
+//@font-family-base       : "Source Sans Pro", @font-family-sans-serif;
+@font-family-base       : "Roboto", @font-family-sans-serif;
+@font-size-base         : 16px;
+@headings-font-weight   : 300;
+@btn-font-weight        : 300;
+@icon-font-path         : "../plugins/bootstrap/3.3.5/fonts/";
+@border-radius-base     : 0;
+@border-radius-large    : 0;
+@border-radius-small    : 0;
 
 // =============================================================
 // Overwrite
 // =============================================================
-.btn-link {
-    &,
-    &:hover {
-        border-color: @white;
-        color: mix(@white, @rsBlue);
-        text-decoration: none;
-    }
+.btn {
+    padding-left: 32px;
+    padding-right: 32px;
+}
 
-    &:hover {
-        color: @white;
-    }
+.btn-lg {
+    padding-left: 64px;
+    padding-right: 64px;
+    font-size: 26px;
+}
+
+.btn-rs {
+    .button-variant(@white; @rsBlue; @white);
 }
 
 // =============================================================
@@ -74,10 +84,10 @@ body {
         > li {
             > a {
                 height: 30px;
-                line-height: 30px;
+                line-height: 26px;
                 padding: 0 15px;
                 color: @white;
-                font-size: 16px;
+                font-size: 20px;
                 font-weight: 400;
                 background: none;
 
@@ -131,8 +141,10 @@ body {
 
 // Footer
 footer {
-    background: @rsBlack;
+    position: relative;
+    background: @rsBlack !important;
     padding: 40px 0;    
+    z-index: 9;
 
     &,
     a,
@@ -141,50 +153,246 @@ footer {
     }
 }
 
-// =============================================================
-// Homepage
-// =============================================================
-.homepage {
-    > section,
-    > footer {
-        position: relative;
-        z-index: 2;
-    }
-}
-
-// Home banner
-.home-banner {
-    z-index: 1;
+.bg-wrapper {
+    position: relative;
     overflow: hidden;
 
-    .home-banner-bg {
+    .bg {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: url(../img/bg_home_01.png) no-repeat 50% 50%;
+        z-index: 1;
+        background: no-repeat 50% 50%;
         background-size: cover;
+    }
+}
+
+.text-white {
+    color: @white;
+}
+
+.text-blue {
+    color: @rsBlue;
+}
+
+.page-header {
+    background: @rsBlue;
+    padding: 35px 0;
+
+    h1,
+    h2 {
+        margin: 0 !important;
+    }
+}
+
+.text-center {
+    img {
+        display: inline-block;
+    }
+}
+
+.control-label {
+    text-align: left !important;
+    font-weight: 300;
+}
+
+.form-action {
+    margin-bottom: 0;
+}
+
+// =============================================================
+// Homepage
+// =============================================================
+.homepage {
+    section {
+        position: relative;
+        background: #fff;
+    }
+
+    #home {
         z-index: 1;
     }
 
-    .home-banner-inner{
+    #customers,
+    #solutions,
+    #contacts {
+        z-index: 2;
+    }
+
+    .page-header {
+        margin: 0;
+        border: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+        margin: 0 0 30px;
+    }
+}
+
+.section-home {
+    .bg {
+        background-image: url(../img/bg_home_01.png);
+        padding: 120px 0 0;
+
+        h1 {
+            font-weight: 400;
+            font-size: 72px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 30px;
+        }
+    }
+
+    .page-header {
         position: absolute;
         left: 0;
         right: 0;
         bottom: 0;
-        background: @rsBlue;
-        padding: 35px 0;
         z-index: 2;
-        color: @white;
 
-        h2 {
-            margin: 0 10px 0 0;
+        .btn + .btn {
+            margin-left: 50px;
+        }
+    }
+}
+
+.section-customers {
+    padding: 80px 0;
+
+    h2 {
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    .row + h2 {
+        margin-top: 80px;
+    }
+
+    .customers-list {
+        .customer {
+            h3 {
+                margin: 0 0 20px;
+            }
+        }
+    }
+
+    .recs-list {
+        margin-bottom: 20px;
+
+        .rec {
+            padding-left: 25px;
+            margin-bottom: 15px;
+            background: url(../img/bullet_01.png) no-repeat 0 50%;
+            text-align: left;
+            font-size: 20px;
+        }
+    }
+}
+
+.section-solutions {
+    .bg-wrapper {
+        min-height: 800px;
+    }
+
+    .bg {
+        position: absolute;
+        background-image: url(../img/bg_home_02.png);        
+        padding: 80px 0;
+
+        img {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            .translate(-50%, 0);
+        }
+    }
+
+    .bg-wrapper + .container {
+        padding-top: 80px;
+        padding-bottom: 80px;        
+    }
+
+    .cog-wrapper {
+        display: inline-block;
+        position: relative;
+        margin-top: 40px;
+        padding-bottom: 80px;
+
+        .cog-hint {
+            position: absolute;
+            text-align: left;
+            white-space: nowrap;
+
+            h3 {
+                margin: 0;
+                color: @rsBlue;
+                font-weight: 700;
+
+                small {
+                    display: block;
+                    color: @rsBlack;
+                    font-weight: 300;
+                }
+            }
         }
 
-        h2, a {
+        .cog-hint-01 {
+            left: -230px;
+            top: 180px;
+        }
+
+        .cog-hint-02 {
+            top: 50px;
+            left: -80px;
+        }
+
+        .cog-hint-03 {
+            top: 340px;
+            left: -10px;
+        }
+
+        .cog-hint-04 {
+            top: 120px;
+            left: 460px;
+        }
+
+        .cog-hint-05 {
+            top: 420px;
+            left: 420px;
+        }
+
+        .cog-hint-06 {
+            top: 260px;
+            left: 730px;
+        }
+    }
+}
+
+.section-contacts {
+    .page-header + .container {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    .contact-location {
+        text-align: right;
+
+        img {
             display: inline-block;
-            vertical-align: middle;
+            margin-bottom: 10px;
+            border: 2px solid @rsBlue;
+            padding: 5px;
+        }
+
+        h3 {
+            margin-bottom: 10px;
         }
     }
 }
