@@ -162,8 +162,8 @@
         var url = rs.HOST_NAME + '/compositor/';
         var data = {
             f: 'jsonp',
-            title: encodeURIComponent(title),
-            url: encodeURIComponent(href)
+            title: title,
+            url: href
         };
 
         if (rs.demo) {

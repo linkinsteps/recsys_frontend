@@ -6891,6 +6891,8 @@ body {
 }
 #rs-navbar.navbar-white {
   background: #ffffff;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 #rs-navbar.navbar-white .navbar-brand img.logo {
   opacity: 1;
