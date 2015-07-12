@@ -1,6 +1,8 @@
 var win = $(window);
 
 $(function () {
+    var body = $(document.body);
+
     win.on('resize', function () {
         var fullHeight = $('.full-height');
         var winHeight = win.height();
@@ -24,11 +26,18 @@ $(function () {
         var href = a.attr('href');
         var target = $(href);
         var top = target.offset().top - navbarHeight;
-        li.addClass('active');
-        navbarItem.not(li).removeClass('active');
 
         $('html, body').animate({
             scrollTop: top
         }, 300);
+    });
+
+    var menu = $('#rs-navbar-collapse');
+    $('.navbar-toggle').on('click', function (e) {
+        if (menu.hasClass('in')) {
+            navbar.removeClass('opened-menu');
+        } else {
+            navbar.addClass('opened-menu');
+        }
     });
 });
