@@ -42,7 +42,7 @@
     rs.URL_MUSTACHE = rs.HOST_NAME + '/rs-cdn/mustache-2.1.2.min.js';
 
     // Log key for rs
-    rs.logKey = {
+    rs.LOG_KEY = {
         TEXT: 'rs_text',
         RS: 'rs_rs',
         HREF: 'rs_href'
@@ -55,6 +55,19 @@
      * Default template of Recommendations
      */
     rs.DEFAULT_TEMPLATE = '<div class="recsys-item"><h4 class="recsys-title"><a class="recsys-link" href="{{url}}">{{title}}</a></h4><p class="recsys-description">{{meta}}</p></div>';
+
+    /**
+     * Get random string include digit and number with total length is 32
+     * @return {String}
+     */
+    rs.getRandomString = function () {
+        return (
+            Math.random().toString(36).substr(2, 8) + 
+            Math.random().toString(36).substr(2, 8) + 
+            Math.random().toString(36).substr(2, 8) + 
+            Math.random().toString(36).substr(2, 8)
+        );
+    };
 
     /**
      * Getting a script with callback
@@ -230,9 +243,6 @@
                     recsListStr += rs.renderRec(recsListTemplate, rec);
                 }
 
-                // Make sure that there is no template values which are available in HTML code
-                //recsListStr = recsListStr.replace(/\{\{[a-zA-Z0-9]*\}\}/g, '');
-
                 LOGGER.debug('Recommendations html: \n' + recsListStr);
 
                 if (recsList.length > 0) {
@@ -405,9 +415,9 @@
                 var a = rs.$(this);
                 var href = a.prop('href');
                 var logData = {};
-                logData[rs.logKey.TEXT] = a.text().trim().replace(/\s*([^\s]+\s?)\s*/g, '$1');
-                logData[rs.logKey.RS] = !!a.parents('[data-rs]')[0];
-                logData[rs.logKey.HREF] = href;
+                logData[rs.LOG_KEY.TEXT] = a.text().trim().replace(/\s*([^\s]+\s?)\s*/g, '$1');
+                logData[rs.LOG_KEY.RS] = !!a.parents('[data-rs]')[0];
+                logData[rs.LOG_KEY.HREF] = href;
                 href = rs.setQueryStrings(href, logData);
 
                 a.attr('href', href);
@@ -422,15 +432,15 @@
         LOGGER.info('[initLogger()]');
 
         var href = window.location.href;
-        var text = rs.getQueryString(href, rs.logKey.TEXT);
-        var isRs = rs.getQueryString(href, rs.logKey.RS);
-        var href = rs.getQueryString(href, rs.logKey.HREF);
+        var text = rs.getQueryString(href, rs.LOG_KEY.TEXT);
+        var isRs = rs.getQueryString(href, rs.LOG_KEY.RS);
+        var href = rs.getQueryString(href, rs.LOG_KEY.HREF);
 
         if (href) {
             var logData = {};
-            logData[rs.logKey.TEXT] = text;
-            logData[rs.logKey.RS] = isRs;
-            logData[rs.logKey.HREF] = href;
+            logData[rs.LOG_KEY.TEXT] = text;
+            logData[rs.LOG_KEY.RS] = isRs;
+            logData[rs.LOG_KEY.HREF] = href;
 
             rs.log(logData);
         }
@@ -447,10 +457,7 @@
         var img = document.createElement('img');
         img.src = rs.HOST_NAME + '/logger/?' + queryString;
     };
-
-    /**
-     * Run RecSys after jQuery and 'document.body' are ready
-     */
+    
     rs.onReady(function () {
         rs.initLogger();
         rs.initRecs();
