@@ -39,6 +39,7 @@
     // Host name of rs
     rs.HOST_NAME = 'http://richanchor.com';
     rs.URL_JQUERY = rs.HOST_NAME + '/rs-cdn/jquery-1.8.3.min.js';
+    rs.URL_COOKIES = rs.HOST_NAME + '/rs-cdn/js.cookie-2.0.2.min.js';
     rs.URL_MUSTACHE = rs.HOST_NAME + '/rs-cdn/mustache-2.1.2.min.js';
 
     // Log key for rs
@@ -46,6 +47,12 @@
         TEXT: 'rs_text',
         RS: 'rs_rs',
         HREF: 'rs_href'
+    };
+
+    // Cookie name
+    rs.UID_NAME = {
+        SITE: 'rs_uid_site',
+        RS: 'rs_uid_rs'
     };
 
     // Delay time for waiting jQuery is ready
@@ -106,6 +113,26 @@
     };
 
     /**
+     * Check existing of JSCookies and store Cookies in 'rs.Cookies'. If not, will get JSCookies
+     * from RS CDN and make it noConflict with current website
+     */
+    rs.getJSCookies = function () {
+        LOGGER.info('[getJSCookies()]');
+
+        if (window.jQuery && window.jQuery.cookie) {
+            LOGGER.info('JSCookies exists');
+            rs.$ = jQuery;
+        } else {
+            LOGGER.info('JSCookies does not exist');
+
+            rs.getScript(rs.URL_COOKIES, function () {
+                LOGGER.info('Got JSCookies');
+                rs.Cookies = window.Cookies.noConflict();
+            });
+        }
+    };
+
+    /**
      * Check existing of Mustache and store Mustache in 'rs.Mustache'. If not, will get Mustache 
      * from RS CDN
      */
@@ -126,17 +153,18 @@
 
 
     /**
-     * Check jQuery, Mustache and 'document.body' is ready or not. If not, will create a timeout for checking.
+     * Check jQuery, Mustache, Cookies and 'document.body' is ready or not. If not, will create a timeout for checking.
      * @param {Function} callback The callback will be called when jQuery is ready
      * @param {Boolean} isFirstTime Is first time call onReady or not
      */
     rs.onReady = function (callback, isFirstTime) {
         if (isFirstTime) {
             rs.getjQuery();
+            rs.getJSCookies();
             rs.getMustache();
         }
 
-        if (!rs.$ || !rs.Mustache) {
+        if (!rs.$ || !rs.Mustache || !rs.Cookies) {
             setTimeout(function () {
                 rs.onReady(callback);
             }, rs.READY_DELAY);
@@ -178,6 +206,10 @@
             title: title,
             url: href
         };
+
+        // Add UID for current site and entire RS
+        data[rs.UID_NAME.SITE] = rs.siteCookie;
+        data[rs.UID_NAME.RS] = rs.rsCookie;
 
         if (rs.demo) {
             data.url = 'http://vbuzz.vn';
@@ -442,6 +474,10 @@
             logData[rs.LOG_KEY.RS] = isRs;
             logData[rs.LOG_KEY.HREF] = href;
 
+            // Add UID for current site and entire RS
+            logData[rs.UID_NAME.SITE] = rs.siteCookie;
+            logData[rs.UID_NAME.RS] = rs.rsCookie;
+
             rs.log(logData);
         }
     };
@@ -457,8 +493,44 @@
         var img = document.createElement('img');
         img.src = rs.HOST_NAME + '/logger/?' + queryString;
     };
+
+    /**
+     * Init cookie for current site and entire RecSys
+     */
+    rs.initCookie = function () {
+        rs.siteCookie = rs.Cookies.get(rs.UID_NAME.SITE);
+        rs.rsCookie = rs.Cookies.get(rs.UID_NAME.RS);
+
+        if (!rs.siteCookie) {
+            LOGGER.info('Cookie for current site does not exits')
+
+            rs.siteCookie = rs.getRandomString();
+            rs.Cookies.set(rs.UID_NAME.SITE, rs.siteCookie, {
+                path: '/',
+                expires: 999
+            });
+            LOGGER.info('Stored cookie "{0}" for current site', rs.siteCookie);
+        } else {
+            LOGGER.info('Cookie for current site is: "{0}"', rs.siteCookie);
+        }
+
+        if (!rs.rsCookie) {
+            LOGGER.info('Cookie for RS does not exits')
+
+            rs.rsCookie = rs.getRandomString();
+            rs.Cookies.set(rs.UID_NAME.RS, rs.rsCookie, {
+                path: '/',
+                expires: 999
+            });
+            LOGGER.info('Stored cookie "{0}" for RS', rs.rsCookie);
+        
+        } else {
+            LOGGER.info('Cookie for RS is: "{0}"', rs.rsCookie);
+        }
+    };
     
     rs.onReady(function () {
+        rs.initCookie();
         rs.initLogger();
         rs.initRecs();
         rs.initEventHandler();
