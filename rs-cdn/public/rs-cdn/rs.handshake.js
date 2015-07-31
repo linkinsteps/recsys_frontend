@@ -95,16 +95,17 @@
 
             var postData = {};
             postData[rs.UID_NAME.RS] = globalUID;
+            var postDataStr = JSON.stringify(postData);
 
-            window.postMessage(JSON.stringify(postData), postUrl);
-            LOGGER.info('Posted message to "' + postUrl + '"');
+            window.postMessage(postDataStr, postUrl);
+            LOGGER.info('Posted message to "' + postUrl + '" with content is "' + postDataStr + '"');
         } else {
             LOGGER.info('There is no post url. [handshake()] skipped!')
         }
     };
 
-    window.onload = function () {
+    setTimeout(function () {
         rs.handshake();
-    };
+    }, 1000);
 
 })(rs = window.rs || {}, Cookies, JSON);
