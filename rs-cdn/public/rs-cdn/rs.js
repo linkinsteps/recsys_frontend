@@ -81,6 +81,8 @@
      * Get global UID via iframe link to 'rs.URL_HANDSHAKE'
      */
     rs.getGlobalUID = function () {
+        LOGGER.info('[getGlobalUID()]');
+
         var currentUrl = window.location.protocol + '//' + window.location.hostname;
         var iframe = document.createElement('iframe');
         iframe.style.position = 'fixed !important';
@@ -93,7 +95,7 @@
         document.body.appendChild(iframe);
 
         var onMessageHandler = function (e) {
-            LOGGER.debug('onMessage event');
+            LOGGER.info('onMessage event');
 
             if (e.domain === currentUrl) {
                 LOGGER.info('Have got a valid post message', e);
@@ -108,7 +110,7 @@
                 LOGGER.info('Have got an invalid post message', e);
             }
 
-            LOGGER.debug('onMessage ended!');
+            LOGGER.info('onMessage ended!');
         };
 
         if (window.addEventListener) {
@@ -116,6 +118,8 @@
         } else {
             window.attachEvent('onmessage', onMessageHandler);
         }
+
+        LOGGER.info('[getGlobalUID() !]');
     };
 
     /**
