@@ -103,7 +103,7 @@
             LOGGER.info('onMessage ended!');
         };
 
-        window.onMessage = onMessageHandler;
+        window.onmessage = onMessageHandler;
 
         // if (window.addEventListener) {
         //     window.addEventListener('message', onMessageHandler, false);
