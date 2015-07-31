@@ -104,8 +104,6 @@
         }
     };
 
-    setTimeout(function () {
-        rs.handshake();
-    }, 1000);
+    rs.handshake();
 
 })(rs = window.rs || {}, Cookies, JSON);
