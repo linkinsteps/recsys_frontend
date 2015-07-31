@@ -1,4 +1,4 @@
-(function (rs, Cookies) {
+(function (rs, Cookies, JSON) {
     /**
      * Get random string include digit and number with total length is 32
      * @return {String}
@@ -50,10 +50,10 @@
             var postData = {};
             postData[rs.UID_NAME.RS] = globalUID;
 
-            window.postMessage(postData, postUrl);
+            window.postMessage(JSON.stringify(postData), postUrl);
         }
     };
 
     rs.handshake();
 
-})(rs = window.rs || {}, Cookies);
+})(rs = window.rs || {}, Cookies, JSON);
