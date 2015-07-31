@@ -103,13 +103,11 @@
             LOGGER.info('onMessage ended!');
         };
 
-        window.onmessage = onMessageHandler;
-
-        // if (window.addEventListener) {
-        //     window.addEventListener('message', onMessageHandler, false);
-        // } else {
-        //     window.attachEvent('onmessage', onMessageHandler);
-        // }
+        if (window.addEventListener) {
+            window.addEventListener('message', onMessageHandler, false);
+        } else {
+            window.attachEvent('onmessage', onMessageHandler);
+        }
 
         var iframe = document.createElement('iframe');
         iframe.style.position = 'fixed !important';
