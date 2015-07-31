@@ -77,6 +77,9 @@
         );
     };
 
+    /**
+     * Get global UID via iframe link to 'rs.URL_HANDSHAKE'
+     */
     rs.getGlobalUID = function () {
         var currentUrl = window.location.protocol + '//' + window.location.hostname;
         var iframe = document.createElement('iframe');
@@ -86,7 +89,8 @@
         iframe.style.top = '-9999px !important';
         iframe.style.left = '-9999px !important';
         iframe.style.visibility = 'hidden !important';
-        iframe.src = URL_HANDSHAKE + '?url=' + encodeURIComponent(currentUrl);
+        iframe.src = rs.URL_HANDSHAKE + '?url=' + encodeURIComponent(currentUrl);
+        document.body.append(iframe);
 
         var onMessageHandler = function (e) {
             LOGGER.debug('onMessage event');
@@ -553,6 +557,7 @@
     };
     
     rs.onReady(function () {
+        rs.getGlobalUID();
         rs.initCookie();
         rs.initLogger();
         rs.initRecs();
