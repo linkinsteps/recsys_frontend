@@ -561,7 +561,7 @@
     };
     
     rs.onReady(function () {
-        rs.getGlobalUID()l
+        rs.getGlobalUID();
         rs.initCookie();
         rs.initLogger();
         rs.initRecs();
