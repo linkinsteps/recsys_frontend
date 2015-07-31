@@ -41,7 +41,7 @@
 
             if (!globalUID) {
                 globalUID = rs.getRandomString();
-                Cookies.set(rs.UID_NAME.RS, rs.siteCookie, {
+                Cookies.set(rs.UID_NAME.RS, globalUID, {
                     path: '/',
                     expires: 999
                 });
