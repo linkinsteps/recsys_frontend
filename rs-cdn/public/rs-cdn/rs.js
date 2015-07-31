@@ -41,6 +41,7 @@
     rs.URL_JQUERY = rs.HOST_NAME + '/rs-cdn/jquery-1.8.3.min.js';
     rs.URL_COOKIES = rs.HOST_NAME + '/rs-cdn/js.cookie-2.0.2.min.js';
     rs.URL_MUSTACHE = rs.HOST_NAME + '/rs-cdn/mustache-2.1.2.min.js';
+    rs.URL_HANDSHAKE = rs.HOST_NAME + '/handshake/';
 
     // Log key for rs
     rs.LOG_KEY = {
@@ -74,6 +75,43 @@
             Math.random().toString(36).substr(2, 8) + 
             Math.random().toString(36).substr(2, 8)
         );
+    };
+
+    rs.getGlobalUID = function () {
+        var currentUrl = window.location.protocol + '//' + window.location.hostname;
+        var iframe = document.createElement('iframe');
+        iframe.style.position = 'fixed !important';
+        iframe.style.width = '1px !important';
+        iframe.style.height = '1px !important';
+        iframe.style.top = '-9999px !important';
+        iframe.style.left = '-9999px !important';
+        iframe.style.visibility = 'hidden !important';
+        iframe.src = URL_HANDSHAKE + '?url=' + encodeURIComponent(currentUrl);
+
+        var onMessageHandler = function (e) {
+            LOGGER.debug('onMessage event');
+
+            if (e.domain === currentUrl) {
+                LOGGER.info('Have got a valid post message', e);
+                var data = rs.$.parseJSON(e.data);
+                LOGGER.info('Data of post message =>', data);
+
+                if (data[rs.UID_NAME.RS]) {
+                    LOGGER.info('Global UID =>', data[rs.UID_NAME.RS]);
+                    rs.rsCookie = data[rs.UID_NAME.RS];
+                }
+            } else {
+                LOGGER.info('Have got an invalid post message', e);
+            }
+
+            LOGGER.debug('onMessage ended!');
+        };
+
+        if (window.addEventListener) {
+            window.addEventListener('message', onMessageHandler);
+        } else {
+            window.attachEvent('onmessage', onMessageHandler);
+        }
     };
 
     /**
@@ -499,7 +537,6 @@
      */
     rs.initCookie = function () {
         rs.siteCookie = rs.Cookies.get(rs.UID_NAME.SITE);
-        rs.rsCookie = rs.Cookies.get(rs.UID_NAME.RS);
 
         if (!rs.siteCookie) {
             LOGGER.info('Cookie for current site does not exits')
@@ -509,23 +546,9 @@
                 path: '/',
                 expires: 999
             });
-            LOGGER.info('Stored cookie "{0}" for current site', rs.siteCookie);
+            LOGGER.info('Stored cookie "' + rs.siteCookie + '" for current site');
         } else {
-            LOGGER.info('Cookie for current site is: "{0}"', rs.siteCookie);
-        }
-
-        if (!rs.rsCookie) {
-            LOGGER.info('Cookie for RS does not exits')
-
-            rs.rsCookie = rs.getRandomString();
-            rs.Cookies.set(rs.UID_NAME.RS, rs.rsCookie, {
-                path: '/',
-                expires: 999
-            });
-            LOGGER.info('Stored cookie "{0}" for RS', rs.rsCookie);
-        
-        } else {
-            LOGGER.info('Cookie for RS is: "{0}"', rs.rsCookie);
+            LOGGER.info('Cookie for current site is: "' + rs.siteCookie + '"');
         }
     };
     
