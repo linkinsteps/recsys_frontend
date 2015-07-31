@@ -104,7 +104,7 @@
         };
 
         if (window.addEventListener) {
-            window.addEventListener('message', onMessageHandler);
+            window.addEventListener('message', onMessageHandler, false);
         } else {
             window.attachEvent('onmessage', onMessageHandler);
         }
