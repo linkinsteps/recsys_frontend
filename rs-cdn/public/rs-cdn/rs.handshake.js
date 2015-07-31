@@ -103,6 +103,8 @@
         }
     };
 
-    rs.handshake();
+    window.onload = function () {
+        rs.handshake();
+    };
 
 })(rs = window.rs || {}, Cookies, JSON);
