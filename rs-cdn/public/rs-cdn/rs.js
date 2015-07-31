@@ -201,12 +201,13 @@
      */
     rs.onReady = function (callback, isFirstTime) {
         if (isFirstTime) {
+            rs.getGlobalUID();
             rs.getjQuery();
             rs.getJSCookies();
             rs.getMustache();
         }
 
-        if (!rs.$ || !rs.Mustache || !rs.Cookies) {
+        if (!rs.$ || !rs.Mustache || !rs.Cookies || !rs.rsCookie) {
             setTimeout(function () {
                 rs.onReady(callback);
             }, rs.READY_DELAY);
@@ -557,7 +558,6 @@
     };
     
     rs.onReady(function () {
-        rs.getGlobalUID();
         rs.initCookie();
         rs.initLogger();
         rs.initRecs();
