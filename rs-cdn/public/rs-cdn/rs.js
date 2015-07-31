@@ -90,7 +90,7 @@
         iframe.style.left = '-9999px !important';
         iframe.style.visibility = 'hidden !important';
         iframe.src = rs.URL_HANDSHAKE + '?url=' + encodeURIComponent(currentUrl);
-        document.body.append(iframe);
+        document.body.appendChild(iframe);
 
         var onMessageHandler = function (e) {
             LOGGER.debug('onMessage event');
