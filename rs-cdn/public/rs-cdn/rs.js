@@ -38,6 +38,7 @@
 
     // Host name of rs
     rs.HOST_NAME = 'http://richanchor.com';
+    // rs.HOST_NAME = 'http://localhost:6969';
     rs.URL_JQUERY = rs.HOST_NAME + '/rs-cdn/jquery-1.8.3.min.js';
     rs.URL_COOKIES = rs.HOST_NAME + '/rs-cdn/js.cookie-2.0.2.min.js';
     rs.URL_MUSTACHE = rs.HOST_NAME + '/rs-cdn/mustache-2.1.2.min.js';
