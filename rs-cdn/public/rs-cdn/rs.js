@@ -87,7 +87,7 @@
         var onMessageHandler = function (e) {
             LOGGER.info('onMessage event');
 
-            if (e.domain === currentUrl) {
+            if (e.origin === currentUrl) {
                 LOGGER.info('Have got a valid post message', e);
                 var data = rs.$.parseJSON(e.data);
                 LOGGER.info('Data of post message =>', data);
