@@ -1,5 +1,6 @@
 (function (rs, Cookies, JSON) {
     rs.debug = true;
+    rs.logArray = true;
 
     /**
      * Log function for rs
@@ -104,6 +105,12 @@
         }
     };
 
-    rs.handshake();
+    window.onmessage = function (e) {
+        if (window.location.href.indexOf(e.domain) === 0) {
+            if (e.data = 'Let\s rock and roll!!!') {
+                rs.handshake();
+            }
+        }
+    };
 
 })(rs = window.rs || {}, Cookies, JSON);

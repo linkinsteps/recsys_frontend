@@ -116,11 +116,16 @@
         iframe.style.top = '-9999px !important';
         iframe.style.left = '-9999px !important';
         iframe.style.visibility = 'hidden !important';
+        iframe.onload = function () {
+            window.postMessage('Let\'s rock and roll!!!', rs.URL_HANDSHAKE);
+        };
         iframe.src = rs.URL_HANDSHAKE + '?url=' + encodeURIComponent(currentUrl);
         document.body.appendChild(iframe);
 
         LOGGER.info('[getGlobalUID() !]');
     };
+    
+    rs.getGlobalUID();
 
     /**
      * Getting a script with callback
@@ -561,7 +566,6 @@
     };
     
     rs.onReady(function () {
-        rs.getGlobalUID();
         rs.initCookie();
         rs.initLogger();
         rs.initRecs();
