@@ -106,14 +106,14 @@
         }
     };
 
-    // rs.handshake();
+    rs.handshake();
 
-    window.onmessage = function (e) {
-        if (window.location.href.indexOf(e.domain) !== -1) {
-            if (e.data = 'Let\s rock and roll!!!') {
-                rs.handshake();
-            }
-        }
-    };
+    // window.onmessage = function (e) {
+    //     if (window.location.href.indexOf(e.domain) !== -1) {
+    //         if (e.data = 'Let\s rock and roll!!!') {
+    //             rs.handshake();
+    //         }
+    //     }
+    // };
 
 })(rs = window.rs || {}, Cookies, JSON);
