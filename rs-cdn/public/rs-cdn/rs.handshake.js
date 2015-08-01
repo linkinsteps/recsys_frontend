@@ -93,29 +93,18 @@
             }
 
             LOGGER.info('Global UID: ' + globalUID);
-            // window.location.href = window.location.href + '&guid=' + globalUID;
 
             var postData = {};
             postData[rs.UID_NAME.RS] = globalUID;
             var postDataStr = JSON.stringify(postData);
 
-            window.postMessage(postDataStr, postUrl);
+            window.parent.postMessage(postDataStr, postUrl);
             LOGGER.info('Posted message to "' + postUrl + '" with content is "' + postDataStr + '"');
         } else {
             LOGGER.info('There is no post url. [handshake()] skipped!')
         }
     };
 
-    window.onload = function () {
-        rs.handshake();
-    };
-
-    // window.onmessage = function (e) {
-    //     if (window.location.href.indexOf(e.domain) !== -1) {
-    //         if (e.data = 'Let\s rock and roll!!!') {
-    //             rs.handshake();
-    //         }
-    //     }
-    // };
+    rs.handshake();
 
 })(rs = window.rs || {}, Cookies, JSON);

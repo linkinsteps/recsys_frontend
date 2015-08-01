@@ -38,7 +38,6 @@
 
     // Host name of rs
     rs.HOST_NAME = 'http://richanchor.com';
-    // rs.HOST_NAME = 'http://localhost:6969';
     rs.URL_JQUERY = rs.HOST_NAME + '/rs-cdn/jquery-1.8.3.min.js';
     rs.URL_COOKIES = rs.HOST_NAME + '/rs-cdn/js.cookie-2.0.2.min.js';
     rs.URL_MUSTACHE = rs.HOST_NAME + '/rs-cdn/mustache-2.1.2.min.js';
@@ -117,16 +116,11 @@
         iframe.style.top = '-9999px !important';
         iframe.style.left = '-9999px !important';
         iframe.style.visibility = 'hidden !important';
-        iframe.onload = function () {
-            window.postMessage('Let\'s rock and roll!!!', rs.URL_HANDSHAKE);
-        };
         iframe.src = rs.URL_HANDSHAKE + '?url=' + encodeURIComponent(currentUrl);
         document.body.appendChild(iframe);
 
         LOGGER.info('[getGlobalUID() !]');
     };
-    
-    rs.getGlobalUID();
 
     /**
      * Getting a script with callback
@@ -211,12 +205,13 @@
      */
     rs.onReady = function (callback, isFirstTime) {
         if (isFirstTime) {
+            rs.getGlobalUID();
             rs.getjQuery();
             rs.getJSCookies();
             rs.getMustache();
         }
 
-        if (!rs.$ || !rs.Mustache || !rs.Cookies) {
+        if (!rs.$ || !rs.Mustache || !rs.Cookies || !rs.rsCookie) {
             setTimeout(function () {
                 rs.onReady(callback);
             }, rs.READY_DELAY);
