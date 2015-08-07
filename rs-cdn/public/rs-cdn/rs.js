@@ -267,7 +267,7 @@
         rs[callbackName] = function (resp) {
             LOGGER.info('Got recommendations from url: ' + url, resp);
 
-            rs.renderRecs(target, resp.recs);
+            rs.renderRecs(target, resp.outputs.recs);
         };
 
         LOGGER.info('Starting get recommendations from url: ' + url);
