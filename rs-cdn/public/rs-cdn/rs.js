@@ -267,7 +267,11 @@
         rs[callbackName] = function (resp) {
             LOGGER.info('Got recommendations from url: ' + url, resp);
 
-            rs.renderRecs(target, resp.outputs.recs);
+            if (resp && resp.outputs && resp.outputs[0] && resp.outputs[0].recs) {
+                rs.renderRecs(target, resp.outputs[0].recs);
+            } else {
+                LOGGER.info('There is no recommendation from server!');
+            }
         };
 
         LOGGER.info('Starting get recommendations from url: ' + url);
