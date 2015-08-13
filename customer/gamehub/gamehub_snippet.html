@@ -1,0 +1,43 @@
+<script type="text/javascript">
+    (function() {
+        var rs = window.rs || (window.rs = {});
+        if (!rs.loaded) {
+            var rsScript = document.createElement('script');
+            rsScript.async = true;
+            rsScript.src = 'http://richanchor.com/rs-cdn/rs.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(rsScript, s);
+            rs.loaded = true;
+        }
+    })();
+</script>
+<div data-rs class="section widget-group-no-name widget-container">
+    <script type="text/template">
+    	<div class="secondaryContent widget Appota_TopLikeWidget">
+    		<h3>Recommendation</h3>
+            <div class="section topVideo">
+            	<div class="secondaryContent mediaSmall">
+	                <ul data-rs-list>
+	                	<li>
+	                		<div class="mediaContent">
+                                <div class="image">
+                                    <div class="top-thumb">
+                                        <a sl-processed="1" href="{{url}}">
+                                            <span class="overlay"></span>
+                                            <img src="{{image}}" alt="{{title}}" border="0" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="title">
+                                    <a sl-processed="1" href="{{url}}">
+                                    	{{title}}
+                                    </a>
+                                </div>
+                            </div>
+	                	</li>
+	                </ul>
+                </div>
+            </div>
+        </div>
+    </script>
+</div>
