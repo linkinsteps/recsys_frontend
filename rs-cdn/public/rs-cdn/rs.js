@@ -523,8 +523,8 @@
         var action = rs.getQueryString(currentUrl, rs.LOG_KEY.ACTION);
 
         // Send log data for visit action
-        var visitData = {};        
-        visitData[rs.LOG_KEY.HREF] = currentUrl;
+        var visitData = {};
+        visitData[rs.LOG_KEY.HREF] = rs.removeRsQueryString(currentUrl);
         visitData[rs.LOG_KEY.ACTION] = 'visit';        
         rs.log(visitData)
 
