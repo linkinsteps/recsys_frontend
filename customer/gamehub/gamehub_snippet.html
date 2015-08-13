@@ -11,33 +11,22 @@
         }
     })();
 </script>
-<div data-rs class="section widget-group-no-name widget-container">
+<div data-rs>
     <script type="text/template">
-    	<div class="secondaryContent widget Appota_TopLikeWidget">
-    		<h3>Recommendation</h3>
-            <div class="section topVideo">
-            	<div class="secondaryContent mediaSmall">
-	                <ul data-rs-list>
-	                	<li>
-	                		<div class="mediaContent">
-                                <div class="image">
-                                    <div class="top-thumb">
-                                        <a sl-processed="1" href="{{url}}">
-                                            <span class="overlay"></span>
-                                            <img src="{{image}}" alt="{{title}}" border="0" />
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="title">
-                                    <a sl-processed="1" href="{{url}}">
-                                    	{{title}}
-                                    </a>
-                                </div>
-                            </div>
-	                	</li>
-	                </ul>
-                </div>
-            </div>
+        <div class="sectionMain similarThreadsThreadView ThreadView">
+            <h4 class="heading">Có thể bạn sẽ quan tâm</h4>
+            <ul class="dataTable" data-rs-list>
+                <li class="dataRow">
+                    <div class="listThreadView">
+                        <div class="picThreadView">
+                            <a sl-processed="1" href="{{url}}" title="{{title}}">
+                                <img src="{{image}}" height="100" width="160" />
+                            </a>
+                        </div>
+                        <div class="titleThreadView"><a sl-processed="1" href="{{url}}" title="{{title}}">{{title}}</a></div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </script>
 </div>
