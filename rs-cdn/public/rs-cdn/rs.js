@@ -47,7 +47,8 @@
     rs.LOG_KEY = {
         TEXT: 'rs_text',
         RS: 'rs_rs',
-        HREF: 'rs_href'
+        HREF: 'rs_href',
+        ACTION: 'rs_action'
     };
 
     // Cookie name
@@ -501,6 +502,7 @@
                 logData[rs.LOG_KEY.TEXT] = a.text().trim().replace(/\s*([^\s]+\s?)\s*/g, '$1');
                 logData[rs.LOG_KEY.RS] = !!a.parents('[data-rs]')[0];
                 logData[rs.LOG_KEY.HREF] = href;
+                logData[rs.LOG_KEY.ACTION] = 'click';
                 href = rs.setQueryStrings(href, logData);
 
                 a.attr('href', href);
@@ -519,17 +521,24 @@
         var isRs = rs.getQueryString(href, rs.LOG_KEY.RS);
         var href = rs.getQueryString(href, rs.LOG_KEY.HREF);
 
+        // Send log data for visit action
+        var visitData = {};        
+        visitData[rs.LOG_KEY.HREF] = href;
+        visitData[rs.LOG_KEY.ACTION] = 'visit';        
+        rs.log(visitData)
+
+        // Send log data for click action to server
         if (href) {
-            var logData = {};
-            logData[rs.LOG_KEY.TEXT] = text;
-            logData[rs.LOG_KEY.RS] = isRs;
-            logData[rs.LOG_KEY.HREF] = href;
+            var clickData = {};
+            clickData[rs.LOG_KEY.TEXT] = text;
+            clickData[rs.LOG_KEY.RS] = isRs;
+            clickData[rs.LOG_KEY.HREF] = href;
 
             // Add UID for current site and entire RS
-            logData[rs.UID_NAME.SITE] = rs.siteCookie;
-            logData[rs.UID_NAME.RS] = rs.rsCookie;
+            clickData[rs.UID_NAME.SITE] = rs.siteCookie;
+            clickData[rs.UID_NAME.RS] = rs.rsCookie;
 
-            rs.log(logData);
+            rs.log(clickData);
         }
     };
 
