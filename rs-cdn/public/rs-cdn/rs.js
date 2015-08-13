@@ -520,6 +520,7 @@
         var text = rs.getQueryString(currentUrl, rs.LOG_KEY.TEXT);
         var isRs = rs.getQueryString(currentUrl, rs.LOG_KEY.RS);
         var href = rs.getQueryString(currentUrl, rs.LOG_KEY.HREF);
+        var action = rs.getQueryString(currentUrl, rs.LOG_KEY.ACTION);
 
         // Send log data for visit action
         var visitData = {};        
@@ -533,6 +534,7 @@
             clickData[rs.LOG_KEY.TEXT] = text;
             clickData[rs.LOG_KEY.RS] = isRs;
             clickData[rs.LOG_KEY.HREF] = href;
+            clickData[rs.LOG_KEY.ACTION] = action;
 
             // Add UID for current site and entire RS
             clickData[rs.UID_NAME.SITE] = rs.siteCookie;
