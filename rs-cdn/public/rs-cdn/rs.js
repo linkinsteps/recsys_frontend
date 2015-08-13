@@ -536,10 +536,6 @@
             clickData[rs.LOG_KEY.HREF] = href;
             clickData[rs.LOG_KEY.ACTION] = action;
 
-            // Add UID for current site and entire RS
-            clickData[rs.UID_NAME.SITE] = rs.siteCookie;
-            clickData[rs.UID_NAME.RS] = rs.rsCookie;
-
             rs.log(clickData);
         }
     };
@@ -550,6 +546,10 @@
      */
     rs.log = function (data) {
         LOGGER.info('[log()]', data);
+
+        // Add UID for current site and entire RS
+        data[rs.UID_NAME.SITE] = rs.siteCookie;
+        data[rs.UID_NAME.RS] = rs.rsCookie;
 
         var queryString = rs.$.param(data);
         var img = document.createElement('img');
