@@ -516,14 +516,14 @@
     rs.initLogger = function () {
         LOGGER.info('[initLogger()]');
 
-        var href = window.location.href;
-        var text = rs.getQueryString(href, rs.LOG_KEY.TEXT);
-        var isRs = rs.getQueryString(href, rs.LOG_KEY.RS);
-        var href = rs.getQueryString(href, rs.LOG_KEY.HREF);
+        var currentUrl = window.location.href;
+        var text = rs.getQueryString(currentUrl, rs.LOG_KEY.TEXT);
+        var isRs = rs.getQueryString(currentUrl, rs.LOG_KEY.RS);
+        var href = rs.getQueryString(currentUrl, rs.LOG_KEY.HREF);
 
         // Send log data for visit action
         var visitData = {};        
-        visitData[rs.LOG_KEY.HREF] = href;
+        visitData[rs.LOG_KEY.HREF] = currentUrl;
         visitData[rs.LOG_KEY.ACTION] = 'visit';        
         rs.log(visitData)
 
