@@ -1,0 +1,28 @@
+{
+    "manifest_version": 2,
+
+    "name": "Richanchor",
+    "description": "Richanchor extension for diplaying recommendations",
+    "version": "1.0",
+
+    // "background": {
+    //     // "persistent": false
+    //     // "scripts": ["assets/js/richanchor.js"]
+    // },
+
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "css": [],
+        "js": ["assets/js/richanchor.js"],
+        "run_at": "document_start"
+    }],
+
+    "browser_action": {
+        "default_icon": "assets/img/richanchor.png"
+            // "default_popup": "richanchor.html"
+    },
+
+    "permissions": [
+        "activeTab"
+    ]
+}
