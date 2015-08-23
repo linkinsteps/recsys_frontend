@@ -42,7 +42,7 @@ function initBarChart(targetId, data) {
             '#FFAD33',
             '#00527A'
         ],
-        resize: true,
+        resize: false,
         element: targetId
     };
     Morris.Bar(config);
@@ -62,7 +62,7 @@ function initLineChart(targetId, data) {
         lineColors: [
             '#FFAD33'
         ],
-        resize: true,
+        resize: false,
         element: targetId
     };
     Morris.Line(config);
