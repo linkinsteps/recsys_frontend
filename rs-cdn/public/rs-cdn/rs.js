@@ -97,8 +97,6 @@
                     LOGGER.info('Global UID =>', data[rs.UID_NAME.RS]);
                     rs.rsCookie = data[rs.UID_NAME.RS];
                 }
-            } else {
-                LOGGER.info('Have got an invalid post message', e);
             }
 
             LOGGER.info('onMessage ended!');
