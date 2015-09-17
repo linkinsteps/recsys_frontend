@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Richanchor",
-    "description": "Richanchor extension for diplaying recommendations",
+    "description": "Recommendation system - Let's change the way people find products and information",
     "version": "1.0",
     "content_scripts": [
         {
