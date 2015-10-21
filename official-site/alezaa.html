@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Richanchor</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link href="http://fonts.googleapis.com/css?family=Roboto:400,300italic,300,400italic,700,700italic" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/rs.css" />
+    <script src="assets/plugins/jquery/1.11.3/jquery-1.11.3.min.js"></script>
+</head>
+
+<body>
+    <div class="container" style="padding-top: 50px">
+        <input type="text" id="query" class="form-control" placeholder="Query..." />
+        <ul class="dropdown-menu open" id="suggestions"></ul>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#query').on('input', function () {
+                var query = this.value.trim();
+
+                $.ajax({
+                    url: 'http://richanchor.com/alezaaSearch',
+                    type: 'get',
+                    dataType: 'json',
+                    data: {
+                        command: 'get',
+                        q: query
+                    },
+                    success: function (resp) {
+                        var suggestionStr = '';
+
+                        if (resp && resp.length > 0 && resp[3] && resp[3].length > 0) {
+                            var suggestions = resp[3];
+
+                            for (var i = 0; i < suggestions.length; i++) {
+                                var suggestion = suggestions[i];
+
+                                suggestionStr += '<li><a>' + suggestion + '</a></li>';
+                            }
+                        } else {
+                            suggestionStr += '<li><a>No result</a></li>';
+                        }
+
+                        $('#suggestions').html(suggestionStr);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
