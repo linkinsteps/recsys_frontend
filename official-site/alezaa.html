@@ -2,18 +2,25 @@
 <html>
 
 <head>
-    <title>Richanchor</title>
+    <title>Alezaa</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,300italic,300,400italic,700,700italic" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="assets/css/rs.css" />
     <script src="assets/plugins/jquery/1.11.3/jquery-1.11.3.min.js"></script>
+    <style type="text/css">
+        #suggestions {
+            display: block;
+            position: static;
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container" style="padding-top: 50px">
         <input type="text" id="query" class="form-control" placeholder="Query..." />
-        <ul class="dropdown-menu open" id="suggestions"></ul>
+        <ul class="dropdown-menu" id="suggestions"></ul>
     </div>
     <script type="text/javascript">
         $(function () {
