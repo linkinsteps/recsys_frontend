@@ -16,7 +16,7 @@
         }
     ],
     "chrome_url_overrides": {
-        "newtab": "ra_newtab.html"
+        "newtab": "newtab.html"
     },
     "browser_action": {
         "default_icon": "assets/img/richanchor_128.png"
@@ -27,6 +27,7 @@
         "128": "assets/img/richanchor_128.png"
     },
     "permissions": [
-        "activeTab"
+        "activeTab",
+        "http://richanchor.com/compositor/*"
     ]
 }
