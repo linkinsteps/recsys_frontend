@@ -19,17 +19,21 @@ $(function () {
 
     var navbarItem = $('.navbar-nav li');
     navbarItem.on('click', function (e) {
-        e.preventDefault();
 
         var li = $(this);
         var a = li.children('a');
         var href = a.attr('href');
-        var target = $(href);
-        var top = target.offset().top - navbarHeight;
 
-        $('html, body').animate({
-            scrollTop: top
-        }, 300);
+        if (href === '#') {
+            e.preventDefault();
+
+            var target = $(href);
+            var top = target.offset().top - navbarHeight;
+
+            $('html, body').animate({
+                scrollTop: top
+            }, 300);
+        }
     });
 
     var menu = $('#rs-navbar-collapse');
