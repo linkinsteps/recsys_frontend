@@ -61,7 +61,7 @@ var server = app.listen(6969, function () {
     var host = server.address().address;
     var port = server.address().port;
 
-    console.log('RecSys CDN is listening at http://%s:%s', host, port);
+    console.log('richanchor.com is listening at http://%s:%s', host, port);
 
 });
 

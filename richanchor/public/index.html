@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,300italic,300,400italic,700,700italic" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="assets/css/rs.css" />
-    <script src="assets/plugins/jquery/1.11.3/jquery-1.11.3.min.js"></script>
-    <script src="assets/plugins/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="assets/plugins/jquery.resizeStop/1.0.0/jquery.resizeStop.js"></script>
-    <script src="assets/js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="/assets/css/rs.css" />
+    <script src="/assets/plugins/jquery/1.11.3/jquery-1.11.3.min.js"></script>
+    <script src="/assets/plugins/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="/assets/plugins/jquery.resizeStop/1.0.0/jquery.resizeStop.js"></script>
+    <script src="/assets/js/main.js"></script>
 </head>
 
 <body class="homepage" data-spy="scroll" data-target="#rs-navbar-collapse" data-offset="80">
@@ -24,8 +24,8 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/">
-                    <img src="assets/img/logo_new.png" alt="Richanchor" class="logo" />
-                    <img src="assets/img/logo_new_white.png" alt="Richanchor" class="logo-white" />
+                    <img src="/assets/img/logo_new.png" alt="Richanchor" class="logo" />
+                    <img src="/assets/img/logo_new_white.png" alt="Richanchor" class="logo-white" />
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="rs-navbar-collapse">
@@ -61,15 +61,15 @@
             <div class="row customers-list">
                 <div class="col-sm-4 customer">
                     <h3>News sites <span class="visible-sm-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></h3>
-                    <img src="assets/img/our_customer_01.png" alt="News sites" class="img-responsive" />
+                    <img src="/assets/img/our_customer_01.png" alt="News sites" class="img-responsive" />
                 </div>
                 <div class="col-sm-4 customer">
                     <h3>E-Commerce sites</h3>
-                    <img src="assets/img/our_customer_02.png" alt="E-Commerce sites" class="img-responsive" />
+                    <img src="/assets/img/our_customer_02.png" alt="E-Commerce sites" class="img-responsive" />
                 </div>
                 <div class="col-sm-4 customer">
                     <h3>Apps &amp; Content Stores</h3>
-                    <img src="assets/img/our_customer_03.png" alt="Apps &amp; Content Stores" class="img-responsive" />
+                    <img src="/assets/img/our_customer_03.png" alt="Apps &amp; Content Stores" class="img-responsive" />
                 </div>
             </div>
             <h2 class="text-blue">What can our recommendation system do?</h2>
@@ -112,13 +112,13 @@
         <div class="bg-wrapper full-height">            
             <div class="bg text-white">
                 <h2>Real-time data, visual reports, <br class="visible-sm-block" /> user-friendly tracking tools</h2>
-                <img src="assets/img/photo_screen_01.png" alt="" class="img-responsive" />
+                <img src="/assets/img/photo_screen_01.png" alt="" class="img-responsive" />
             </div>
         </div>
         <div class="container text-center">
             <h2 class="text-blue">How does our recommendation system <br class="visible-sm-block" /> work for you?</h2>
             <div class="cog-wrapper">
-                <img src="assets/img/how_we_work.png" alt="" class="cog img-responsive" />
+                <img src="/assets/img/how_we_work.png" alt="" class="cog img-responsive" />
                 <div class="cog-hint cog-hint-01">
                     <h3>1<small>Receive customer requests</small></h3>
                 </div>
@@ -153,7 +153,7 @@
                     <h3 class="text-blue">Richanchor Team</h3>
                     <address>
                         Address: No 101 Dao Tan, Ba Dinh dist, Hanoi, Vietnam<br />
-                        Email: <a href="mailto:info@richanchor.com">info@richanchor.com</a>
+                        Email: <a href="mailto:richanchor.com@gmail.com">richanchor.com@gmail.com</a>
                     </address>
                     <hr />
                 </div>
@@ -162,7 +162,7 @@
                         <h3 class="text-blue">Richanchor Team</h3>
                         <address>
                             Address: No 101 Dao Tan, Ba Dinh dist, Hanoi, Vietnam<br />
-                            Email: <a href="mailto:info@richanchor.com">info@richanchor.com</a>
+                            Email: <a href="mailto:richanchor.com@gmail.com">richanchor.com@gmail.com</a>
                         </address>
 
                         <br class="hidden-md" />
@@ -171,35 +171,35 @@
                         <br class="hidden-md" />
                     </div>
 
-                    <form class="form-horizontal" method="POST" action="">
+                    <form class="form-horizontal" method="POST" action="/contactus" id="form-contact">
                         <div class="form-group">
-                            <label for="name" class="control-label col-sm-3">Name:</label>
+                            <label for="name" class="control-label col-sm-3">Name<span class="text-danger">*</span></label>
                             <div class="col-sm-9">
                                 <input type="text" id="name" name="name" class="form-control" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="email" class="control-label col-sm-3">Email Address:</label>
+                            <label for="email" class="control-label col-sm-3">Email Address<span class="text-danger">*</span></label>
                             <div class="col-sm-9">
                                 <input type="email" id="email" name="email" class="form-control" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="phone" class="control-label col-sm-3">Phone number:</label>
+                            <label for="phone" class="control-label col-sm-3">Phone number</label>
                             <div class="col-sm-9">
                                 <input type="tel" id="phone" name="phone" class="form-control" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="org" class="control-label col-sm-3">Organization:</label>
+                            <label for="org" class="control-label col-sm-3">Organization</label>
                             <div class="col-sm-9">
                                 <input type="text" id="org" name="org" class="form-control" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="msg" class="control-label col-sm-3">Message:</label>
+                            <label for="msg" class="control-label col-sm-3">Message<span class="text-danger">*</span></label>
                             <div class="col-sm-9">
-                                <textarea id="msg" name="msg" class="form-control" rows="3"></textarea>
+                                <textarea id="msg" name="msg" class="form-control" rows="3" style="resize: none"></textarea>
                             </div>
                         </div>
                         <div class="form-group form-action">
@@ -208,9 +208,13 @@
                             </div>
                         </div>
                     </form>
+                    <div id="thanks" style="display: none">
+                        <h2 style="margin-bottom: 0" class="text-blue">Thanks for contacting us!</h2>
+                        <p class="lead">We are going to reply you soon</p>
+                    </div>
                 </div>
                 <div class="col-sm-6 contact-location">
-                    <img src="assets/img/map2.png" alt="" class="img-responsive" />
+                    <img src="/assets/img/map2.png" alt="" class="img-responsive" />
                 </div>
             </div>
         </div>
