@@ -41,8 +41,15 @@ router.post('/contactus', function (req, res, next) {
     try {
         // send mail with defined transport object
         transporter.sendMail({
-            from: 'RichAnchor Team <richanchor.com@gmail.com>',
+            from: 'RichAnchor Team <info@richanchor.com>',
             to: 'richanchor.com@gmail.com',
+            cc: [
+                'anhtuan9288@gmail.com',
+                'giang.taquynh@gmail.com',
+                'ducdhm@gmail.com',
+                'xuta.le@gmail.com',
+                'linkinsteps@gmail.com'
+            ],
             subject: 'Contact from richanchor.com',
             text: plainText,
             html: htmlStr
