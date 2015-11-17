@@ -1,40 +1,28 @@
 var win = $(window);
 
 $(function () {
-    var body = $(document.body);
+    initFullHeightPanel();
+    initNavbar();
+    initGotoLink();
+    initContactForm();
+});
 
+function initFullHeightPanel() {
     win.on('resize', function () {
         var fullHeight = $('.full-height');
         var winHeight = win.height();
 
         fullHeight.css('height', winHeight);
     }).trigger('resize');
+}
 
+function initNavbar() {
     var navbar = $('#rs-navbar');
-    var navbarHeight = navbar.innerHeight();
+
     win.on('scroll', function () {
         var winTop = win.scrollTop();
         navbar[winTop > 0 ? 'addClass' : 'removeClass']('navbar-white');
     }).trigger('scroll');
-
-    var navbarItem = $('.navbar-nav li');
-    navbarItem.on('click', function (e) {
-
-        var li = $(this);
-        var a = li.children('a');
-        var href = a.attr('href');
-
-        if (href === '#') {
-            e.preventDefault();
-
-            var target = $(href);
-            var top = target.offset().top - navbarHeight;
-
-            $('html, body').animate({
-                scrollTop: top
-            }, 300);
-        }
-    });
 
     var menu = $('#rs-navbar-collapse');
     $('.navbar-toggle').on('click', function (e) {
@@ -44,9 +32,27 @@ $(function () {
             navbar.addClass('opened-menu');
         }
     });
+}
 
-    initContactForm();
-});
+function initGotoLink() {
+    var navbar = $('#rs-navbar');
+    var navbarHeight = navbar.innerHeight();
+
+    $('.goto-link').each(function () {
+        var link = $(this);
+
+        link.on('click', function (e) {
+            e.preventDefault();
+
+            var target = $(href);
+            var top = target.offset().top - navbarHeight;
+
+            $('html, body').animate({
+                scrollTop: top
+            }, 300);
+        });
+    });
+}
 
 function disableContactForm(form) {
     form.find('input, textarea, select, button').prop('disabled', true);
