@@ -40,6 +40,7 @@ function initGotoLink() {
 
     $('.goto-link').each(function () {
         var link = $(this);
+        var href = link.attr('href');
 
         link.on('click', function (e) {
             e.preventDefault();
